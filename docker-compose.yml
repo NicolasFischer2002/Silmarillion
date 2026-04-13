@@ -1,0 +1,19 @@
+services:
+  frontend:
+    build:
+      context: ./Frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./Frontend:/app
+      - /app/node_modules
+    command: npm run dev -- --host 0.0.0.0
+
+  backend:
+    image: mcr.microsoft.com/dotnet/sdk:10.0
+    working_dir: /src/Source/Contexts/UserContext/UserContext.Api
+    volumes:
+      - ./Backend:/src
+    ports:
+      - "5000:5000"
+    command: dotnet run --urls=http://0.0.0.0:5000

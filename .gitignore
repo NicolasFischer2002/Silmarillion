@@ -1,0 +1,68 @@
+# ========================================
+# 🔹 Sistema operacional
+# ========================================
+.DS_Store
+Thumbs.db
+
+# ========================================
+# 🔹 IDEs / Editores
+# ========================================
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ========================================
+# 🔹 .NET (Backend)
+# ========================================
+Backend/**/bin/
+Backend/**/obj/
+Backend/**/TestResults/
+
+# Logs
+Backend/**/*.log
+
+# ========================================
+# 🔹 Node / React / Vite (Frontend)
+# ========================================
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.vite/
+Frontend/coverage/
+
+# Logs
+Frontend/npm-debug.log*
+Frontend/yarn-debug.log*
+Frontend/yarn-error.log*
+
+# ========================================
+# 🔹 Variáveis de ambiente / segredos
+# ========================================
+.env
+.env.*
+!.env.example
+Backend/**/appsettings.Development.json
+Frontend/.env
+
+# ========================================
+# 🔹 Docker
+# ========================================
+docker-compose.override.yml
+
+# ========================================
+# 🔹 Arquivos temporários / cache
+# ========================================
+*.tmp
+*.cache
+*.swp
+*.bak
+
+# ========================================
+# 🔹 Testes
+# ========================================
+coverage/
+*.coverage
+*.coveragexml

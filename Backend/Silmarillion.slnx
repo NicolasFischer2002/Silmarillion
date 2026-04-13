@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Source/" />
+  <Folder Name="/Source/Contexts/" />
+  <Folder Name="/Source/Contexts/UserContext/">
+    <Project Path="Source/Contexts/UserContext/UserContext.Api/UserContext.Api.csproj" />
+    <Project Path="Source/Contexts/UserContext/UserContext.Application/UserContext.Application.csproj" />
+    <Project Path="Source/Contexts/UserContext/UserContext.Domain/UserContext.Domain.csproj" />
+    <Project Path="Source/Contexts/UserContext/UserContext.Infrastructure/UserContext.Infrastructure.csproj" />
+    <Project Path="Source/Contexts/UserContext/UserContext.Tests/UserContext.Tests.csproj" />
+  </Folder>
+</Solution>
