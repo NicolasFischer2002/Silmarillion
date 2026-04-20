@@ -1,14 +1,25 @@
 <Solution>
   <Folder Name="/Source/" />
   <Folder Name="/Source/Contexts/" />
+  <Folder Name="/Source/Contexts/AccessControlContext/">
+    <Project Path="Source/Contexts/AccessControlContext.Application/AccessControlContext.Application.csproj" Id="4ca82837-22b9-4ff4-a362-7b959407532c" />
+    <Project Path="Source/Contexts/AccessControlContext.Domain/AccessControlContext.Domain.csproj" Id="1ef9fab1-1852-4ff5-90a8-b464a3180435" />
+    <Project Path="Source/Contexts/AccessControlContext.Infrastructure/AccessControlContext.Infrastructure.csproj" Id="7028b549-24e5-441b-9bc2-c068c977b871" />
+    <Project Path="Source/Contexts/AccessControlContext.Tests/AccessControlContext.Tests.csproj" Id="7a676980-526f-4f84-bd1e-dcd79c46eba0" />
+  </Folder>
+  <Folder Name="/Source/Contexts/IdentityContext/">
+    <Project Path="Source/Contexts/IdentityContext.Application/IdentityContext.Application.csproj" Id="0aa25a85-c874-486a-8877-474d21169d17" />
+    <Project Path="Source/Contexts/IdentityContext.Domain/IdentityContext.Domain.csproj" Id="bda6be87-9b3b-48e9-8f2c-44c1360d473a" />
+    <Project Path="Source/Contexts/IdentityContext.Infrastructure/IdentityContext.Infrastructure.csproj" Id="16fb92f2-a1d8-443b-81fc-2d23245d24d3" />
+    <Project Path="Source/Contexts/IdentityContext.Tests/IdentityContext.Tests.csproj" Id="a774a592-390e-4a99-aa48-c910181ba54c" />
+  </Folder>
+  <Folder Name="/Source/Contexts/OrganizationContext/">
+    <Project Path="Source/Contexts/Organization.Application/OrganizationContext.Application.csproj" Id="80b0e527-51e4-46b3-b2c2-69f7d73622c8" />
+    <Project Path="Source/Contexts/Organization.Domain/OrganizationContext.Domain.csproj" Id="4ee23768-87be-418a-a243-cefe0db9b02b" />
+    <Project Path="Source/Contexts/Organization.Infrastructure/OrganizationContext.Infrastructure.csproj" Id="3076aae4-c890-481f-b36a-1a76ac2e69dd" />
+    <Project Path="Source/Contexts/OrganizationContext.Tests/OrganizationContext.Tests.csproj" Id="8b670e8c-e495-4419-993c-9ac5202b6fe0" />
+  </Folder>
   <Folder Name="/Source/Contexts/SharedKernel/">
     <Project Path="Source/Contexts/SharedKernel/SharedKernel.csproj" Id="262a3ccb-0b10-4dba-8019-f0c4e5621a83" />
-  </Folder>
-  <Folder Name="/Source/Contexts/UserContext/">
-    <Project Path="Source/Contexts/UserContext/UserContext.Api/UserContext.Api.csproj" />
-    <Project Path="Source/Contexts/UserContext/UserContext.Application/UserContext.Application.csproj" />
-    <Project Path="Source/Contexts/UserContext/UserContext.Domain/UserContext.Domain.csproj" />
-    <Project Path="Source/Contexts/UserContext/UserContext.Infrastructure/UserContext.Infrastructure.csproj" />
-    <Project Path="Source/Contexts/UserContext/UserContext.Tests/UserContext.Tests.csproj" />
   </Folder>
 </Solution>

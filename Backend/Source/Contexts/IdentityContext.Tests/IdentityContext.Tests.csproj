@@ -12,12 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+    <ProjectReference Include="..\IdentityContext.Application\IdentityContext.Application.csproj" />
+    <ProjectReference Include="..\IdentityContext.Domain\IdentityContext.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UserContext.Domain\UserContext.Domain.csproj" />
-    <ProjectReference Include="..\UserContext.Application\UserContext.Application.csproj" />
+    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
 
 </Project>
