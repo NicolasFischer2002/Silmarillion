@@ -1,4 +1,4 @@
-﻿namespace Organization.Application
+﻿namespace Domain
 {
     public class Class1
     {

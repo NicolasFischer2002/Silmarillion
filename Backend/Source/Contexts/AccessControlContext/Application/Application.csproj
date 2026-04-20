@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IdentityContext.Application\IdentityContext.Application.csproj" />
-    <ProjectReference Include="..\IdentityContext.Domain\IdentityContext.Domain.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>

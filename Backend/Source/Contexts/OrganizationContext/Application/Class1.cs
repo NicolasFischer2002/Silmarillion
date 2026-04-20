@@ -1,4 +1,4 @@
-﻿namespace AccessControlContext.Domain
+﻿namespace Application
 {
     public class Class1
     {
