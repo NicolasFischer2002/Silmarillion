@@ -1,6 +1,9 @@
 <Solution>
   <Folder Name="/Source/" />
   <Folder Name="/Source/Contexts/" />
+  <Folder Name="/Source/Contexts/SharedKernel/">
+    <Project Path="Source/Contexts/SharedKernel/SharedKernel.csproj" Id="262a3ccb-0b10-4dba-8019-f0c4e5621a83" />
+  </Folder>
   <Folder Name="/Source/Contexts/UserContext/">
     <Project Path="Source/Contexts/UserContext/UserContext.Api/UserContext.Api.csproj" />
     <Project Path="Source/Contexts/UserContext/UserContext.Application/UserContext.Application.csproj" />
