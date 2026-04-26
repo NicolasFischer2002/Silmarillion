@@ -13,15 +13,15 @@ namespace Domain.Policies
             var normalized = StringNormalizer.Normalize(value);
 
             if (string.IsNullOrWhiteSpace(normalized))
-                return Result<string>.Failure(OrganizationErros.EmailRequired());
+                return Result<string>.Failure(OrganizationErrors.EmailRequired());
 
             normalized = normalized.ToLowerInvariant();
 
             if (normalized.Length > MaxLength)
-                return Result<string>.Failure(OrganizationErros.EmailTooLong(MaxLength));
+                return Result<string>.Failure(OrganizationErrors.EmailTooLong(MaxLength));
 
             if (!IsValidFormat(normalized))
-                return Result<string>.Failure(OrganizationErros.EmailInvalidFormat());
+                return Result<string>.Failure(OrganizationErrors.EmailInvalidFormat());
 
             return Result<string>.Success(normalized);
         }

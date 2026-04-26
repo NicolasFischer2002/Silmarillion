@@ -1,16 +1,18 @@
 ﻿using Domain.Enums;
+using Domain.Errors;
 using SharedKernel.Results;
+using SharedKernel.Validation;
 
 namespace Domain.ValueObjects
 {
     public sealed record Address
     {
-        public AddressState AddressState { get; private set; }
-        public AddressCity City { get; private set; }
-        public AddressZipCode ZipCode { get; private set; }
-        public AddressStreet Street { get; private set; }
-        public AddressNumber Number { get; private set; }
-        public AddressComplement Complement { get; private set; }
+        public AddressState AddressState { get; }
+        public AddressCity City { get; }
+        public AddressZipCode ZipCode { get; }
+        public AddressStreet Street { get; }
+        public AddressNumber Number { get; }
+        public AddressComplement Complement { get; }
 
         private Address(
             AddressState addressState, 
@@ -36,6 +38,24 @@ namespace Domain.ValueObjects
             AddressNumber number, 
             AddressComplement complement)
         {
+            if (!EnumGuard.IsDefined(addressState))
+                return Result<Address>.Failure(OrganizationErrors.InvalidState());
+
+            if (city is null)
+                return Result<Address>.Failure(OrganizationErrors.CityRequired());
+
+            if (zipCode is null)
+                return Result<Address>.Failure(OrganizationErrors.ZipCodeRequired());
+
+            if (street is null)
+                return Result<Address>.Failure(OrganizationErrors.StreetRequired());
+
+            if (number is null)
+                return Result<Address>.Failure(OrganizationErrors.NumberRequired());
+
+            if (complement is null)
+                return Result<Address>.Failure(OrganizationErrors.ComplementRequired());
+
             return Result<Address>.Success(new Address(
                 addressState, city, zipCode, street, number, complement
             ));
