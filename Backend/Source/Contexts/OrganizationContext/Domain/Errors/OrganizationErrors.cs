@@ -55,13 +55,28 @@ namespace Domain.Errors
         public static Error StreetRequired()
             => Error.Validation("Organization.Address.Street.Required", "A rua é obrigatória.");
 
+        public static Error StreetTooShort(int minLength)
+            => Error.Validation("Organization.Address.Street.TooShort", $"A rua deve ter no mínimo {minLength} caracteres.");
+
+        public static Error StreetTooLong(int maxLength)
+            => Error.Validation("Organization.Address.Street.TooLong", $"A rua deve ter no máximo {maxLength} caracteres.");
+
         // Number
         public static Error NumberRequired()
             => Error.Validation("Organization.Address.Number.Required", "O número é obrigatório.");
 
+        public static Error NumberTooShort(int minLength)
+            => Error.Validation("Organization.Address.Number.TooShort", $"O número deve ter no mínimo {minLength} caracteres.");
+
+        public static Error NumberTooLong(int maxLength)
+            => Error.Validation("Organization.Address.Number.TooLong", $"O número deve ter no máximo {maxLength} caracteres.");
+
         // Complement
         public static Error ComplementRequired()
             => Error.Validation("Organization.Address.Complement.Required", "O complemento é obrigatório.");
+
+        public static Error ComplementTooLong(int maxLength)
+            => Error.Validation("Organization.Address.Complement.TooLong", $"O complemento deve ter no máximo {maxLength} caracteres.");
 
         // State
         public static Error InvalidState()

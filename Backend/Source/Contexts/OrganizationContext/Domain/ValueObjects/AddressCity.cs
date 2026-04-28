@@ -15,7 +15,7 @@ namespace Domain.ValueObjects
             Value = value;
         }
 
-        public static Result<AddressCity> Create(string value)
+        public static Result<AddressCity> Create(string? value)
         {
             var normalizedValue = StringNormalizer.Normalize(value);
 

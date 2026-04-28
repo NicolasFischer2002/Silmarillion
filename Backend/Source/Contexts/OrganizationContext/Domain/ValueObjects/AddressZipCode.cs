@@ -13,7 +13,7 @@ namespace Domain.ValueObjects
             Value = value;
         }
 
-        public static Result<AddressZipCode> Create(string value)
+        public static Result<AddressZipCode> Create(string? value)
         {
             var normalizedValue = StringNormalizer.Normalize(value);
             var validation = AddressZipCodePolicy.Validate(normalizedValue);
