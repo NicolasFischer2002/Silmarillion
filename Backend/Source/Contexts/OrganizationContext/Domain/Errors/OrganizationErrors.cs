@@ -4,18 +4,22 @@ namespace Domain.Errors
 {
     internal static class OrganizationErrors
     {
+        // Organization
+        public static Error OrganizationIdInvalid()
+            => Error.Validation("Organization.Id.Invalid", "O identificador da organização é inválido.");
+
         // Email
         public static Error EmailRequired()
-            => Error.Validation("User.Email.Required", "O email é obrigatório.");
+            => Error.Validation("Organization.Email.Required", "O email é obrigatório.");
 
         public static Error EmailInvalid()
-            => Error.Validation("User.Email.Invalid", "O email informado é inválido.");
+            => Error.Validation("Organization.Email.Invalid", "O email informado é inválido.");
 
         public static Error EmailTooLong(int maxLength)
-            => Error.Validation("User.Email.TooLong", $"O email deve ter no máximo {maxLength} caracteres.");
+            => Error.Validation("Organization.Email.TooLong", $"O email deve ter no máximo {maxLength} caracteres.");
 
         public static Error EmailInvalidFormat()
-            => Error.Validation("User.Email.InvalidFormat", "O formato do email é inválido.");
+            => Error.Validation("Organization.Email.InvalidFormat", "O formato do email é inválido.");
 
         // OrganizationName
         public static Error OrganizationNameRequired()
@@ -81,5 +85,14 @@ namespace Domain.Errors
         // State
         public static Error InvalidState()
             => Error.Validation("Organization.Address.State.Invalid", "O estado informado é inválido.");
+
+        // Address
+        public static Error AddressRequired()
+            => Error.Validation("Organization.Address.Required", "O endereço é obrigatório.");
+
+        internal static Error[] OrganizarionIdInvalid()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Domain.Enums;
+using Domain.Errors;
 using Domain.ValueObjects;
 using SharedKernel.Results;
 
@@ -36,15 +37,31 @@ namespace Domain.Entities
         }
 
         public static Result<Organization> Create(
+            Guid Id,
             OrganizationName organizationName,
             Cnpj cnpj,
             EmailAddress emailAddress,
             Address address)
         {
+            if (Id == Guid.Empty)
+                return Result<Organization>.Failure(OrganizationErrors.OrganizarionIdInvalid());
+
+            if (organizationName is null)
+                return Result<Organization>.Failure(OrganizationErrors.OrganizationNameRequired());
+
+            if (cnpj is null)
+                return Result<Organization>.Failure(OrganizationErrors.CnpjRequired());
+
+            if (emailAddress is null)
+                return Result<Organization>.Failure(OrganizationErrors.EmailRequired());
+
+            if (address is null)
+                return Result<Organization>.Failure(OrganizationErrors.AddressRequired());
+
             var now = DateTime.UtcNow;
 
             return Result<Organization>.Success(new Organization(
-                Guid.NewGuid(), organizationName, cnpj, emailAddress, address, OrganizationStatus.Active, now, now
+                Id, organizationName, cnpj, emailAddress, address, OrganizationStatus.Active, now, now
             ));
         }
     }
