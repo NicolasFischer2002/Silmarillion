@@ -2,6 +2,7 @@ using Domain.Entities;
 using Domain.Enums;
 using Domain.Errors;
 using Domain.ValueObjects;
+using SharedKernel.Errors;
 using SharedTests.Assertions;
 
 namespace Tests.Domain.Entities;
@@ -67,7 +68,7 @@ public class UserTests
             ValidPasswordHash()
         );
 
-        result.ShouldFailWith(IdentityErrors.EmailRequired());
+        result.ShouldFailWith(EmailAddressPolicyErrors.EmailRequired());
     }
 
     [TestMethod]
@@ -159,7 +160,7 @@ public class UserTests
 
         var result = user.ChangeEmailAddress(null!);
 
-        result.ShouldFailWith(IdentityErrors.EmailRequired());
+        result.ShouldFailWith(EmailAddressPolicyErrors.EmailRequired());
     }
 
     [TestMethod]
