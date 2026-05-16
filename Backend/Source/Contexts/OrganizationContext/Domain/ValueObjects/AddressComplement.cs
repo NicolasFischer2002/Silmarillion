@@ -23,5 +23,7 @@ namespace Domain.ValueObjects
 
             return Result<AddressComplement>.Success(new AddressComplement(normalizedValue));
         }
+
+        public override string ToString() => Value;
     }
 }

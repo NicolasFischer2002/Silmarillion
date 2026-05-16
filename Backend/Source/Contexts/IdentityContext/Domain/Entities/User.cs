@@ -1,6 +1,7 @@
 ﻿using Domain.Enums;
 using Domain.Errors;
 using Domain.ValueObjects;
+using SharedKernel.Errors;
 using SharedKernel.Results;
 
 namespace Domain.Entities
@@ -49,7 +50,7 @@ namespace Domain.Entities
                 return Result<User>.Failure(IdentityErrors.FullNameRequired());
 
             if (emailAddress is null)
-                return Result<User>.Failure(IdentityErrors.EmailRequired());
+                return Result<User>.Failure(EmailAddressPolicyErrors.EmailRequired());
 
             if (passwordHash is null)
                 return Result<User>.Failure(IdentityErrors.PasswordHashRequired());
@@ -81,7 +82,7 @@ namespace Domain.Entities
         public Result ChangeEmailAddress(EmailAddress emailAddress)
         {
             if (emailAddress is null)
-                return Result.Failure(IdentityErrors.EmailRequired());
+                return Result.Failure(EmailAddressPolicyErrors.EmailRequired());
             
             EmailAddress = emailAddress;
             LastModifiedAt = DateTime.UtcNow;

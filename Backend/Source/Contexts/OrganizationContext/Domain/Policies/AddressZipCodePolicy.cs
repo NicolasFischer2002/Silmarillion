@@ -7,10 +7,8 @@ namespace Domain.Policies
     {
         public const int DigitsLength = 8;
 
-        public static Result<string> Validate(string? value)
+        public static Result<string> Validate(string? normalized)
         {
-            var normalized = Normalize(value);
-
             if (string.IsNullOrWhiteSpace(normalized))
                 return Result<string>.Failure(OrganizationErrors.ZipCodeRequired());
 
@@ -21,16 +19,6 @@ namespace Domain.Policies
                 return Result<string>.Failure(OrganizationErrors.ZipCodeInvalid());
 
             return Result<string>.Success(normalized);
-        }
-
-        private static string? Normalize(string? value)
-        {
-            if (value is null)
-                return null;
-
-            var digitsOnly = new string([.. value.Where(char.IsDigit)]);
-
-            return digitsOnly.Trim();
         }
     }
 }

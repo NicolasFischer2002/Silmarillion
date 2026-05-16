@@ -1,3 +1,4 @@
+using Domain.Errors;
 using Domain.ValueObjects;
 using SharedKernel.Errors;
 using SharedTests.Assertions;
@@ -24,11 +25,22 @@ public class EmailAddressTests
     [DataRow("@domain.com")]
     [DataRow("userdomain.com")]
     [DataRow("user@domain")]
-    public void Create_ShouldReturnFailure_WhenValueHasInvalidFormat(string value)
+    public void Create_ShouldReturnFailure_WhenFormatIsInvalid(string value)
     {
         var result = EmailAddress.Create(value);
 
         result.ShouldFailWith(EmailAddressPolicyErrors.EmailInvalidFormat());
+    }
+
+    [TestMethod]
+    public void Create_ShouldReturnFailure_WhenValueIsTooLong()
+    {
+        var localPart = new string('a', 246);
+        var value = $"{localPart}@test.com";
+
+        var result = EmailAddress.Create(value);
+
+        result.ShouldFailWith(EmailAddressPolicyErrors.EmailTooLong(254));
     }
 
     [TestMethod]
@@ -38,6 +50,15 @@ public class EmailAddressTests
     public void Create_ShouldReturnSuccess_WhenValueIsValid(string value)
     {
         var result = EmailAddress.Create(value);
+
+        result.ShouldSucceed();
+        Assert.AreEqual("user@domain.com", result.Value.Value);
+    }
+
+    [TestMethod]
+    public void Create_ShouldNormalizeValue()
+    {
+        var result = EmailAddress.Create("   USER@DOMAIN.COM   ");
 
         result.ShouldSucceed();
         Assert.AreEqual("user@domain.com", result.Value.Value);

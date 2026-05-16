@@ -15,13 +15,23 @@ namespace Domain.ValueObjects
 
         public static Result<AddressZipCode> Create(string? value)
         {
-            var normalizedValue = StringNormalizer.Normalize(value);
+            var normalizedValue = Normalize(StringNormalizer.Normalize(value));
             var validation = AddressZipCodePolicy.Validate(normalizedValue);
 
             if (validation.IsFailure)
                 return Result<AddressZipCode>.Failure(validation.Errors);
 
             return Result<AddressZipCode>.Success(new AddressZipCode(normalizedValue!));
+        }
+
+        private static string? Normalize(string? value)
+        {
+            if (value is null)
+                return null;
+
+            var digitsOnly = new string([.. value.Where(char.IsDigit)]);
+
+            return digitsOnly.Trim();
         }
 
         public string GetFormattedValue()

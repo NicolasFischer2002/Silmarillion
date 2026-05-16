@@ -1,6 +1,7 @@
 ﻿using Domain.Enums;
 using Domain.Errors;
 using Domain.ValueObjects;
+using SharedKernel.Errors;
 using SharedKernel.Results;
 
 namespace Domain.Entities
@@ -44,7 +45,7 @@ namespace Domain.Entities
             Address address)
         {
             if (Id == Guid.Empty)
-                return Result<Organization>.Failure(OrganizationErrors.OrganizarionIdInvalid());
+                return Result<Organization>.Failure(OrganizationErrors.OrganizationIdInvalid());
 
             if (organizationName is null)
                 return Result<Organization>.Failure(OrganizationErrors.OrganizationNameRequired());
@@ -53,7 +54,7 @@ namespace Domain.Entities
                 return Result<Organization>.Failure(OrganizationErrors.CnpjRequired());
 
             if (emailAddress is null)
-                return Result<Organization>.Failure(OrganizationErrors.EmailRequired());
+                return Result<Organization>.Failure(EmailAddressPolicyErrors.EmailRequired());
 
             if (address is null)
                 return Result<Organization>.Failure(OrganizationErrors.AddressRequired());

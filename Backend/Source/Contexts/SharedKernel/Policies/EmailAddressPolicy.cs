@@ -1,8 +1,8 @@
-﻿using Domain.Errors;
+﻿using SharedKernel.Errors;
 using SharedKernel.Results;
 using SharedKernel.Text;
 
-namespace Domain.Policies
+namespace SharedKernel.Policies
 {
     public static class EmailAddressPolicy
     {
@@ -13,15 +13,15 @@ namespace Domain.Policies
             var normalized = StringNormalizer.Normalize(value);
 
             if (string.IsNullOrWhiteSpace(normalized))
-                return Result<string>.Failure(OrganizationErrors.EmailRequired());
+                return Result<string>.Failure(EmailAddressPolicyErrors.EmailRequired());
 
             normalized = normalized.ToLowerInvariant();
 
             if (normalized.Length > MaxLength)
-                return Result<string>.Failure(OrganizationErrors.EmailTooLong(MaxLength));
+                return Result<string>.Failure(EmailAddressPolicyErrors.EmailTooLong(MaxLength));
 
             if (!IsValidFormat(normalized))
-                return Result<string>.Failure(OrganizationErrors.EmailInvalidFormat());
+                return Result<string>.Failure(EmailAddressPolicyErrors.EmailInvalidFormat());
 
             return Result<string>.Success(normalized);
         }

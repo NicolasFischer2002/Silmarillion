@@ -1,4 +1,4 @@
-﻿using Domain.Policies;
+﻿using SharedKernel.Policies;
 using SharedKernel.Results;
 
 namespace Domain.ValueObjects
