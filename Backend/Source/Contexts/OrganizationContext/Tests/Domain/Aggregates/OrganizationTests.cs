@@ -1,11 +1,11 @@
-using Domain.Entities;
+using Domain.Aggregates;
 using Domain.Enums;
 using Domain.Errors;
 using Domain.ValueObjects;
 using SharedKernel.Errors;
 using SharedTests.Assertions;
 
-namespace Tests.Domain.Entities;
+namespace Tests.Domain.Aggregates;
 
 [TestClass]
 public class OrganizationTests
