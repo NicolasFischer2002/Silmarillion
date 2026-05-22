@@ -1,4 +1,4 @@
-﻿using Domain.Aggregates.Memberships.Aggregates;
+﻿using Domain.Aggregates.Memberships.Aggregate;
 using Domain.Aggregates.Memberships.Constants;
 using Domain.Aggregates.Memberships.Errors;
 using Domain.Aggregates.Memberships.Events;

@@ -4,7 +4,7 @@ using Domain.Aggregates.Memberships.Events;
 using SharedKernel.DomainEvents;
 using SharedKernel.Results;
 
-namespace Domain.Aggregates.Memberships.Aggregates
+namespace Domain.Aggregates.Memberships.Aggregate
 {
     public sealed class Membership : Entity
     {
