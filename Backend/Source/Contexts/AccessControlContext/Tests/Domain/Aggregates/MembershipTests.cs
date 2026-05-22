@@ -237,5 +237,133 @@ namespace Tests.Domain.Aggregates
                 ? Guid.Empty
                 : Guid.Parse(value);
         }
+
+        [TestMethod]
+        public void AssignRole_ShouldReturnSuccess_WhenRoleIsNotAssigned()
+        {
+            var membership = CreatePendingMembership();
+            var roleId = Guid.NewGuid();
+
+            var result = membership.AssignRole(roleId);
+
+            result.ShouldSucceed();
+
+            Assert.HasCount(1, membership.RoleIds);
+            Assert.IsTrue(membership.RoleIds.Contains(roleId));
+        }
+
+        [TestMethod]
+        public void AssignRole_ShouldReturnFailure_WhenRoleIsAlreadyAssigned()
+        {
+            var membership = CreatePendingMembership();
+            var roleId = Guid.NewGuid();
+
+            membership.AssignRole(roleId);
+
+            var result = membership.AssignRole(roleId);
+
+            result.ShouldFailWith(MembershipErrors.RoleAlreadyAssigned());
+        }
+
+        [TestMethod]
+        public void AssignRole_ShouldReturnFailure_WhenRoleIdIsEmpty()
+        {
+            var membership = CreatePendingMembership();
+
+            var result = membership.AssignRole(Guid.Empty);
+
+            result.ShouldFailWith(MembershipErrors.RoleIdRequired());
+        }
+
+        [TestMethod]
+        public void RemoveRole_ShouldReturnSuccess_WhenRoleIsAssigned()
+        {
+            var membership = CreatePendingMembership();
+            var roleId = Guid.NewGuid();
+
+            membership.AssignRole(roleId);
+
+            var result = membership.RemoveRole(roleId);
+
+            result.ShouldSucceed();
+
+            Assert.HasCount(0, membership.RoleIds);
+            Assert.IsFalse(membership.RoleIds.Contains(roleId));
+        }
+
+        [TestMethod]
+        public void RemoveRole_ShouldReturnFailure_WhenRoleIsNotAssigned()
+        {
+            var membership = CreatePendingMembership();
+            var roleId = Guid.NewGuid();
+
+            var result = membership.RemoveRole(roleId);
+
+            result.ShouldFailWith(MembershipErrors.RoleNotAssigned());
+        }
+
+        [TestMethod]
+        public void RemoveRole_ShouldReturnFailure_WhenRoleIdIsEmpty()
+        {
+            var membership = CreatePendingMembership();
+
+            var result = membership.RemoveRole(Guid.Empty);
+
+            result.ShouldFailWith(MembershipErrors.RoleIdRequired());
+        }
+
+        [TestMethod]
+        public void AssignRole_ShouldKeepExistingRoles_WhenAddingAnotherRole()
+        {
+            var membership = CreatePendingMembership();
+            var firstRoleId = Guid.NewGuid();
+            var secondRoleId = Guid.NewGuid();
+
+            membership.AssignRole(firstRoleId);
+
+            var result = membership.AssignRole(secondRoleId);
+
+            result.ShouldSucceed();
+
+            Assert.HasCount(2, membership.RoleIds);
+            Assert.IsTrue(membership.RoleIds.Contains(firstRoleId));
+            Assert.IsTrue(membership.RoleIds.Contains(secondRoleId));
+        }
+
+        [TestMethod]
+        public void AssignRole_ShouldUpdateLastModifiedAt_WhenRoleIsAssigned()
+        {
+            var membership = CreatePendingMembership();
+            var originalLastModifiedAt = membership.LastModifiedAt;
+
+            Thread.Sleep(10);
+
+            var result = membership.AssignRole(Guid.NewGuid());
+
+            result.ShouldSucceed();
+
+            Assert.IsTrue(
+                membership.LastModifiedAt > originalLastModifiedAt);
+        }
+
+        [TestMethod]
+        public void RemoveRole_ShouldUpdateLastModifiedAt_WhenRoleIsRemoved()
+        {
+            var membership = CreatePendingMembership();
+            var roleId = Guid.NewGuid();
+
+            membership.AssignRole(roleId);
+
+            var originalLastModifiedAt = membership.LastModifiedAt;
+
+            Thread.Sleep(10);
+
+            var result = membership.RemoveRole(roleId);
+
+            result.ShouldSucceed();
+
+            Assert.IsTrue(
+                membership.LastModifiedAt > originalLastModifiedAt);
+        }
     }
 }

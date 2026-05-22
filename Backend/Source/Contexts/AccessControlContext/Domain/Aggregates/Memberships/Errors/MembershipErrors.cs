@@ -30,5 +30,20 @@ namespace Domain.Aggregates.Memberships.Errors
 
         public static Error MembershipAlreadyRevoked() =>
             Error.BusinessRule("Membership.AlreadyRevoked", "A associação já está revogada.");
+
+        public static Error RoleIdRequired() =>
+            Error.Validation(
+            code: "Membership.RoleIdRequired",
+            message: "O id da função é obrigatório.");
+
+        public static Error RoleAlreadyAssigned() =>
+            Error.Conflict(
+                code: "Membership.RoleAlreadyAssigned",
+                message: "A função já está atribuída à associação.");
+
+        public static Error RoleNotAssigned() =>
+            Error.Validation(
+                code: "Membership.RoleNotAssigned",
+                message: "A função não está atribuída à associação.");
     }
 }

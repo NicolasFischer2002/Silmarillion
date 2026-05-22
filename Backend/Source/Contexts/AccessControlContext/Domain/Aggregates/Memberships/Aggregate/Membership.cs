@@ -14,6 +14,8 @@ namespace Domain.Aggregates.Memberships.Aggregate
         public MembershipStatus Status { get; private set; }
         public DateTime CreatedAt { get; }
         public DateTime LastModifiedAt { get; private set; }
+        public IReadOnlyCollection<Guid> RoleIds => _roleIds;
+        private readonly HashSet<Guid> _roleIds = [];
 
         private Membership(
             Guid id, 
@@ -123,6 +125,36 @@ namespace Domain.Aggregates.Memberships.Aggregate
                     now
                 )
             );
+
+            return Result.Success();
+        }
+
+        public Result AssignRole(Guid roleId)
+        {
+            if (roleId == Guid.Empty)
+                return Result.Failure(MembershipErrors.RoleIdRequired());
+
+            if (_roleIds.Contains(roleId))
+                return Result.Failure(MembershipErrors.RoleAlreadyAssigned());
+
+            _roleIds.Add(roleId);
+
+            LastModifiedAt = DateTime.UtcNow;
+
+            return Result.Success();
+        }
+
+        public Result RemoveRole(Guid roleId)
+        {
+            if (roleId == Guid.Empty)
+                return Result.Failure(MembershipErrors.RoleIdRequired());
+
+            if (!_roleIds.Contains(roleId))
+                return Result.Failure(MembershipErrors.RoleNotAssigned());
+
+            _roleIds.Remove(roleId);
+
+            LastModifiedAt = DateTime.UtcNow;
 
             return Result.Success();
         }
