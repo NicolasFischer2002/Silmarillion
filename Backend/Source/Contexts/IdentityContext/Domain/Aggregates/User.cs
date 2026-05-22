@@ -4,7 +4,7 @@ using Domain.ValueObjects;
 using SharedKernel.Errors;
 using SharedKernel.Results;
 
-namespace Domain.Entities
+namespace Domain.Aggregates
 {
     public sealed class User
     {
