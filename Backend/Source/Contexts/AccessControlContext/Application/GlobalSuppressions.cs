@@ -6,3 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Style", "IDE0290:Usar construtor primário", Justification = "<Pendente>", Scope = "member", Target = "~M:Application.Roles.Commands.CreateRole.CreateRoleCommandHandler.#ctor(Application.Abstractions.Persistence.IRoleRepository,Application.Abstractions.Persistence.IUnitOfWork)")]
+[assembly: SuppressMessage("Style", "IDE0290:Usar construtor primário", Justification = "<Pendente>", Scope = "member", Target = "~M:Application.Memberships.Commands.AssignRoleToMembership.AssignRoleToMembershipCommandHandler.#ctor(Application.Abstractions.Persistence.IMembershipRepository,Application.Abstractions.Persistence.IRoleRepository,Application.Abstractions.Persistence.IUnitOfWork)")]

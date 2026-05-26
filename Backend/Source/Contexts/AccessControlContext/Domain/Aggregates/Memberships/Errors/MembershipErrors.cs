@@ -45,5 +45,10 @@ namespace Domain.Aggregates.Memberships.Errors
             Error.Validation(
                 code: "Membership.RoleNotAssigned",
                 message: "A função não está atribuída à associação.");
+
+        public static Error MembershipNotFound() =>
+            Error.NotFound(
+                "Membership.NotFound",
+                "Não foi possível encontrar nenhum membro.");
     }
 }
