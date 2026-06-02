@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <Folder Include="DependencyInjection\" />
-    <Folder Include="Memberships\Commands\CreateMembership\" />
     <Folder Include="Memberships\Commands\ActivateMembership\" />
     <Folder Include="Memberships\Commands\RemoveRoleFromMembership\" />
     <Folder Include="Roles\Commands\AddPermissionToRole\" />
