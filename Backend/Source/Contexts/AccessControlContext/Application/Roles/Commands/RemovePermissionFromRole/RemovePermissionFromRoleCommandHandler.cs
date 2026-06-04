@@ -1,0 +1,42 @@
+﻿using Application.Abstractions.Persistence;
+using Domain.Aggregates.Roles.Errors;
+using SharedKernel.Results;
+
+namespace Application.Roles.Commands.RemovePermissionFromRole
+{
+    public sealed class RemovePermissionFromRoleCommandHandler
+    {
+        private readonly IRoleRepository _roleRepository;
+
+        private readonly IUnitOfWork _unitOfWork;
+
+        public RemovePermissionFromRoleCommandHandler(
+            IRoleRepository roleRepository,
+            IUnitOfWork unitOfWork)
+        {
+            _roleRepository = roleRepository;
+            _unitOfWork = unitOfWork;
+        }
+
+        public async Task<Result> HandleAsync(
+            RemovePermissionFromRoleCommand command,
+            CancellationToken cancellationToken = default)
+        {
+            var role = await _roleRepository.GetByIdAsync(
+                command.RoleId,
+                cancellationToken);
+
+            if (role is null)
+                return Result.Failure(RoleErrors.RoleNotFound());
+
+            var removeResult = role.RemovePermission(command.Permission);
+
+            if (removeResult.IsFailure)
+                return Result.Failure(removeResult.Errors);
+
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            return Result.Success();
+        }
+    }
+}
