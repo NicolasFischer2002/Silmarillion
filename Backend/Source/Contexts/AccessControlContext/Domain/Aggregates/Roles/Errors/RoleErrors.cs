@@ -33,5 +33,10 @@ namespace Domain.Aggregates.Roles.Errors
             Error.Validation(
                 code: "Role.PermissionNotAssigned", 
                 message: "A permissão não está atribuída à função.");
+
+        public static Error RoleNotFound() =>
+            Error.NotFound(
+                code: "Role.NotFound",
+                message: "Não foi possível encontrar nenhuma função.");
     }
 }

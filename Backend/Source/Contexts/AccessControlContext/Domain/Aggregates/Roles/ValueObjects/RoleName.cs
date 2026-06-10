@@ -6,13 +6,13 @@ namespace Domain.Aggregates.Roles.ValueObjects
 {
     public sealed record RoleName
     {
-        public string Name { get; }
+        public string Value { get; }
         private const int MinLength = 3;
         private const int MaxLength = 100;
 
         private RoleName(string name)
         {
-            Name = name;
+            Value = name;
         }
 
         public static Result<RoleName> Create(string? name)
@@ -31,6 +31,6 @@ namespace Domain.Aggregates.Roles.ValueObjects
             return Result<RoleName>.Success(new RoleName(normalizedValue));
         }
 
-        public override string ToString() => Name;
+        public override string ToString() => Value;
     }
 }
