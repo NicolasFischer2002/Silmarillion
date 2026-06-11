@@ -27,7 +27,7 @@ public class RoleTests
         Assert.AreEqual(organizationId, role.OrganizationId);
         Assert.AreEqual(roleName, role.Name);
         Assert.AreEqual(RoleStatus.Active, role.Status);
-        Assert.HasCount(0, role.Permissions);
+        Assert.HasCount(0, role.Permissions.Values);
         Assert.AreEqual(role.CreatedAt, role.LastModifiedAt);
         Assert.HasCount(1, role.DomainEvents);
         Assert.IsInstanceOfType(role.DomainEvents.Single(), typeof(RoleCreatedDomainEvent));
@@ -64,7 +64,7 @@ public class RoleTests
 
         result.ShouldSucceed();
 
-        Assert.HasCount(1, role.Permissions);
+        Assert.HasCount(1, role.Permissions.Values);
         Assert.IsTrue(role.Permissions.Contains(PermissionCode.OrganizationRead));
     }
 
@@ -89,7 +89,7 @@ public class RoleTests
 
         result.ShouldSucceed();
 
-        Assert.HasCount(0, role.Permissions);
+        Assert.HasCount(0, role.Permissions.Values);
         Assert.IsFalse(role.Permissions.Contains(PermissionCode.OrganizationRead));
     }
 

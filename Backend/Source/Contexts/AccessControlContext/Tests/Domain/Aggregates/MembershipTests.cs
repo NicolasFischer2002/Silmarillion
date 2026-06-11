@@ -248,8 +248,8 @@ namespace Tests.Domain.Aggregates
 
             result.ShouldSucceed();
 
-            Assert.HasCount(1, membership.RoleIds);
-            Assert.IsTrue(membership.RoleIds.Contains(roleId));
+            Assert.HasCount(1, membership.AssignedRoles.Values);
+            Assert.IsTrue(membership.AssignedRoles.Values.Contains(roleId));
         }
 
         [TestMethod]
@@ -287,8 +287,8 @@ namespace Tests.Domain.Aggregates
 
             result.ShouldSucceed();
 
-            Assert.HasCount(0, membership.RoleIds);
-            Assert.IsFalse(membership.RoleIds.Contains(roleId));
+            Assert.HasCount(0, membership.AssignedRoles.Values);
+            Assert.IsFalse(membership.AssignedRoles.Values.Contains(roleId));
         }
 
         [TestMethod]
@@ -325,9 +325,9 @@ namespace Tests.Domain.Aggregates
 
             result.ShouldSucceed();
 
-            Assert.HasCount(2, membership.RoleIds);
-            Assert.IsTrue(membership.RoleIds.Contains(firstRoleId));
-            Assert.IsTrue(membership.RoleIds.Contains(secondRoleId));
+            Assert.HasCount(2, membership.AssignedRoles.Values);
+            Assert.IsTrue(membership.AssignedRoles.Values.Contains(firstRoleId));
+            Assert.IsTrue(membership.AssignedRoles.Values.Contains(secondRoleId));
         }
 
         [TestMethod]

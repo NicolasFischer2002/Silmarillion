@@ -240,7 +240,7 @@ namespace Tests.Application.Memberships.Commands
 
             result.ShouldSucceed();
 
-            Assert.IsTrue(membership.RoleIds.Contains(role.Id));
+            Assert.IsTrue(membership.AssignedRoles.Values.Contains(role.Id));
 
             unitOfWorkMock.Verify(
                 unitOfWork => unitOfWork.SaveChangesAsync(

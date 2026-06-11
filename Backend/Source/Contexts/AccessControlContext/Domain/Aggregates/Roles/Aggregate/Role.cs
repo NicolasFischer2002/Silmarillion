@@ -10,27 +10,21 @@ namespace Domain.Aggregates.Roles.Aggregate
     public sealed class Role : Entity
     {
         public Guid Id { get; }
-
         public Guid OrganizationId { get; }
-
         public RoleName Name { get; private set; }
-
         public RoleStatus Status { get; private set; }
-
-        public IReadOnlyCollection<PermissionCode> Permissions =>
-            _permissions;
-
-        private readonly HashSet<PermissionCode> _permissions = [];
-
+        public RolePermissions Permissions { get; private set; }
         public DateTime CreatedAt { get; }
-
         public DateTime LastModifiedAt { get; private set; }
+
+        private Role() { }
 
         private Role(
             Guid id,
             Guid organizationId,
             RoleName name,
             RoleStatus status,
+            RolePermissions permissions,
             DateTime createdAt,
             DateTime lastModifiedAt)
         {
@@ -40,6 +34,7 @@ namespace Domain.Aggregates.Roles.Aggregate
             Status = status;
             CreatedAt = createdAt;
             LastModifiedAt = lastModifiedAt;
+            Permissions = permissions;
         }
 
         public static Result<Role> Create(
@@ -60,9 +55,9 @@ namespace Domain.Aggregates.Roles.Aggregate
                 organizationId,
                 name,
                 RoleStatus.Active,
+                new RolePermissions(),
                 now,
-                now
-            );
+                now);
 
             role.AddDomainEvent(
                 new RoleCreatedDomainEvent(
@@ -73,31 +68,34 @@ namespace Domain.Aggregates.Roles.Aggregate
             return Result<Role>.Success(role);
         }
 
-        public Result AddPermission(PermissionCode permission)
+        public Result AddPermission(
+            PermissionCode permission)
         {
-            if (_permissions.Contains(permission))
-                return Result.Failure(RoleErrors.PermissionAlreadyAssigned());
+            var result = Permissions.Add(permission);
 
-            _permissions.Add(permission);
+            if (result.IsFailure)
+                return result;
 
             LastModifiedAt = DateTime.UtcNow;
 
             return Result.Success();
         }
 
-        public Result RemovePermission(PermissionCode permission)
+        public Result RemovePermission(
+            PermissionCode permission)
         {
-            if (!_permissions.Contains(permission))
-                return Result.Failure(RoleErrors.PermissionNotAssigned());
+            var result = Permissions.Remove(permission);
 
-            _permissions.Remove(permission);
+            if (result.IsFailure)
+                return result;
 
             LastModifiedAt = DateTime.UtcNow;
 
             return Result.Success();
         }
 
-        public Result Rename(RoleName name)
+        public Result Rename(
+            RoleName name)
         {
             Name = name;
 
@@ -129,10 +127,7 @@ namespace Domain.Aggregates.Roles.Aggregate
         public Result Activate()
         {
             if (Status == RoleStatus.Active)
-            {
-                return Result.Failure(
-                    RoleErrors.RoleAlreadyActive());
-            }
+                return Result.Failure(RoleErrors.RoleAlreadyActive());
 
             Status = RoleStatus.Active;
 
