@@ -1,11 +1,12 @@
-﻿using Application.Abstractions.Persistence;
+﻿using Application.Abstractions.Handlers;
+using Application.Abstractions.Persistence;
 using Domain.Aggregates.Roles.Aggregate;
 using Domain.Aggregates.Roles.ValueObjects;
 using SharedKernel.Results;
 
 namespace Application.Roles.Commands.CreateRole
 {
-    public sealed class CreateRoleCommandHandler
+    public sealed class CreateRoleCommandHandler : ICreateRoleCommandHandler
     {
         private readonly IRoleRepository _roleRepository;
         private readonly IUnitOfWork _unitOfWork;
