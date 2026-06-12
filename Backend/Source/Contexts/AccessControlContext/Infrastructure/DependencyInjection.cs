@@ -9,14 +9,13 @@ namespace Infrastructure
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(
+        public static IServiceCollection AddAccessControlInfrastructure(
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            var connectionString =
-                configuration.GetConnectionString("AccessControl");
+            var connectionString = configuration.GetConnectionString("AccessControl");
 
-            services.AddDbContext<Persistence.AccessControlDbContext>(
+            services.AddDbContext<AccessControlDbContext>(
                 options =>
                 {
                     options.UseNpgsql(connectionString);

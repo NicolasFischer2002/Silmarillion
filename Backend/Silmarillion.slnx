@@ -24,7 +24,7 @@
   </Folder>
   <Folder Name="/Source/Presentation/" />
   <Folder Name="/Source/Presentation/API/">
-    <Project Path="Source/Presentation/API/API/API.csproj" Id="be4a3328-a5cd-4820-97ed-508e6c2ed08d" />
+    <Project Path="Source/Presentation/API/API/API.csproj" Id="e1b951fb-6543-4f8e-846c-da6850ece7a1" />
   </Folder>
   <Folder Name="/Source/Tests/" />
   <Folder Name="/Source/Tests/SharedTests/">

@@ -1,17 +1,20 @@
-using API.Extensions;
-using API.Modules.AccessControl;
-using Infrastructure;
+using API.Contexts.AccessControlContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-builder.Services.AddApi();
+builder.Services.AddAccessControlModule(builder.Configuration);
 
 var app = builder.Build();
 
-app.UseApi();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-app.MapAccessControlEndpoints();
+app.MapAccessControlModule();
 
 app.Run();
