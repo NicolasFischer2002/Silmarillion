@@ -1,6 +1,7 @@
 ﻿using Domain.Aggregates.Memberships.Constants;
 using Domain.Aggregates.Memberships.Errors;
 using Domain.Aggregates.Memberships.Events;
+using Domain.Aggregates.Roles.ValueObjects;
 using SharedKernel.DomainEvents;
 using SharedKernel.Results;
 
@@ -12,23 +13,26 @@ namespace Domain.Aggregates.Memberships.Aggregate
         public Guid UserId { get; }
         public Guid OrganizationId { get; }
         public MembershipStatus Status { get; private set; }
+        public MembershipRoles AssignedRoles { get; private set; }
         public DateTime CreatedAt { get; }
         public DateTime LastModifiedAt { get; private set; }
-        public IReadOnlyCollection<Guid> RoleIds => _roleIds;
-        private readonly HashSet<Guid> _roleIds = [];
 
-        private Membership(
-            Guid id, 
-            Guid userId, 
-            Guid organizationId, 
-            MembershipStatus status, 
-            DateTime createdAt, 
+        private Membership() { }
+
+        internal Membership(
+            Guid id,
+            Guid userId,
+            Guid organizationId,
+            MembershipStatus status,
+            MembershipRoles assignedRoles,
+            DateTime createdAt,
             DateTime lastModifiedAt)
         {
             Id = id;
             UserId = userId;
             OrganizationId = organizationId;
             Status = status;
+            AssignedRoles = assignedRoles;
             CreatedAt = createdAt;
             LastModifiedAt = lastModifiedAt;
         }
@@ -39,19 +43,28 @@ namespace Domain.Aggregates.Memberships.Aggregate
             Guid organizationId)
         {
             if (id == Guid.Empty)
-                return Result<Membership>.Failure(MembershipErrors.MembershipIdRequired());
+                return Result<Membership>.Failure(
+                    MembershipErrors.MembershipIdRequired());
 
             if (userId == Guid.Empty)
-                return Result<Membership>.Failure(MembershipErrors.UserIdRequired());
+                return Result<Membership>.Failure(
+                    MembershipErrors.UserIdRequired());
 
             if (organizationId == Guid.Empty)
-                return Result<Membership>.Failure(MembershipErrors.OrganizationIdRequired());
+                return Result<Membership>.Failure(
+                    MembershipErrors.OrganizationIdRequired());
 
             var now = DateTime.UtcNow;
 
-            return Result<Membership>.Success(new Membership(
-                id, userId, organizationId, MembershipStatus.Pending, now, now
-            ));
+            return Result<Membership>.Success(
+                new Membership(
+                    id,
+                    userId,
+                    organizationId,
+                    MembershipStatus.Pending,
+                    new MembershipRoles(),
+                    now,
+                    now));
         }
 
         public Result Activate()
@@ -73,9 +86,7 @@ namespace Domain.Aggregates.Memberships.Aggregate
                     Id,
                     UserId,
                     OrganizationId,
-                    now
-                )
-            );
+                    now));
 
             return Result.Success();
         }
@@ -99,9 +110,7 @@ namespace Domain.Aggregates.Memberships.Aggregate
                     Id,
                     UserId,
                     OrganizationId,
-                    now
-                )
-            );
+                    now));
 
             return Result.Success();
         }
@@ -122,22 +131,17 @@ namespace Domain.Aggregates.Memberships.Aggregate
                     Id,
                     UserId,
                     OrganizationId,
-                    now
-                )
-            );
+                    now));
 
             return Result.Success();
         }
 
         public Result AssignRole(Guid roleId)
         {
-            if (roleId == Guid.Empty)
-                return Result.Failure(MembershipErrors.RoleIdRequired());
+            var result = AssignedRoles.Add(roleId);
 
-            if (_roleIds.Contains(roleId))
-                return Result.Failure(MembershipErrors.RoleAlreadyAssigned());
-
-            _roleIds.Add(roleId);
+            if (result.IsFailure)
+                return result;
 
             LastModifiedAt = DateTime.UtcNow;
 
@@ -146,13 +150,10 @@ namespace Domain.Aggregates.Memberships.Aggregate
 
         public Result RemoveRole(Guid roleId)
         {
-            if (roleId == Guid.Empty)
-                return Result.Failure(MembershipErrors.RoleIdRequired());
+            var result = AssignedRoles.Remove(roleId);
 
-            if (!_roleIds.Contains(roleId))
-                return Result.Failure(MembershipErrors.RoleNotAssigned());
-
-            _roleIds.Remove(roleId);
+            if (result.IsFailure)
+                return result;
 
             LastModifiedAt = DateTime.UtcNow;
 

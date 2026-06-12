@@ -33,12 +33,12 @@ namespace Application.Permissions.Queries.GetEffectivePermissions
                 return new GetEffectivePermissionsResponse([]);
 
             var roles = await _roleRepository.GetByIdsAsync(
-                [.. membership.RoleIds],
+                [.. membership.AssignedRoles.Values],
                 cancellationToken);
 
             var permissions = roles
                 .Where(role => role.Status == RoleStatus.Active)
-                .SelectMany(role => role.Permissions)
+                .SelectMany(role => role.Permissions.Values)
                 .Distinct()
                 .ToList();
 

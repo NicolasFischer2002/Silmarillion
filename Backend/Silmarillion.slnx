@@ -22,6 +22,10 @@
   <Folder Name="/Source/Contexts/SharedKernel/">
     <Project Path="Source/Contexts/SharedKernel/SharedKernel.csproj" Id="262a3ccb-0b10-4dba-8019-f0c4e5621a83" />
   </Folder>
+  <Folder Name="/Source/Presentation/" />
+  <Folder Name="/Source/Presentation/API/">
+    <Project Path="Source/Presentation/API/API/API.csproj" Id="e1b951fb-6543-4f8e-846c-da6850ece7a1" />
+  </Folder>
   <Folder Name="/Source/Tests/" />
   <Folder Name="/Source/Tests/SharedTests/">
     <Project Path="Source/Contexts/SharedTests/SharedTests/SharedTests/SharedTests.csproj" Id="d969abb9-75a3-453e-8f0b-354fc3ceda77" />

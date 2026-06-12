@@ -113,7 +113,7 @@ public class RemoveRoleFromMembershipCommandHandlerTests
 
         result.ShouldSucceed();
 
-        Assert.IsFalse(membership.RoleIds.Contains(roleId));
+        Assert.IsFalse(membership.AssignedRoles.Values.Contains(roleId));
 
         unitOfWorkMock.Verify(
             unitOfWork => unitOfWork.SaveChangesAsync(
@@ -152,7 +152,7 @@ public class RemoveRoleFromMembershipCommandHandlerTests
             command,
             TestContext.CancellationToken);
 
-        Assert.IsFalse(membership.RoleIds.Contains(roleId));
+        Assert.IsFalse(membership.AssignedRoles.Values.Contains(roleId));
 
         unitOfWorkMock.Verify(
             unitOfWork => unitOfWork.SaveChangesAsync(

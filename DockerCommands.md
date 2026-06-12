@@ -8,6 +8,16 @@ docker compose up --build
 
 ---
 
+## Para subir o banco de dados💺🎲
+
+Na raiz do projeto (onde está o `docker-compose.yml`), execute:
+
+```bash
+docker compose up postgres -d
+```
+
+---
+
 ## 🌐 Acessos
 
 * 🎨 Front-end: http://localhost:5173

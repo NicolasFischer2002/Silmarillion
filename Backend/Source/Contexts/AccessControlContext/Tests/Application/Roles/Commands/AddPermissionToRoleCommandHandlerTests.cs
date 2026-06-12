@@ -150,7 +150,7 @@ public class AddPermissionToRoleCommandHandlerTests
 
         result.ShouldSucceed();
 
-        Assert.HasCount(1, role.Permissions);
+        Assert.HasCount(1, role.Permissions.Values);
 
         Assert.IsTrue(role.Permissions.Contains(PermissionCode.OrganizationRead));
     }
