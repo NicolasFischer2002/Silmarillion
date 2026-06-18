@@ -1,11 +1,12 @@
-﻿using Application.Abstractions.Persistence;
+﻿using Application.Abstractions.Handlers;
+using Application.Abstractions.Persistence;
 using Domain.Aggregates.Roles.Errors;
 using Domain.Aggregates.Roles.ValueObjects;
 using SharedKernel.Results;
 
 namespace Application.Roles.Commands.RenameRole
 {
-    public sealed class RenameRoleCommandHandler
+    public sealed class RenameRoleCommandHandler : IRenameRoleCommandHandler
     {
         private readonly IRoleRepository _roleRepository;
 
@@ -30,7 +31,7 @@ namespace Application.Roles.Commands.RenameRole
             if (role is null)
                 return Result.Failure(RoleErrors.RoleNotFound());
 
-            var roleNameResult = RoleName.Create(command.Name);
+            var roleNameResult = RoleName.Create(command.NewName);
 
             if (roleNameResult.IsFailure)
                 return Result.Failure(roleNameResult.Errors);
