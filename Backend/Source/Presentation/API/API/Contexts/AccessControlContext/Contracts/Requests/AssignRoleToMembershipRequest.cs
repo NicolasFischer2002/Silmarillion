@@ -1,4 +1,4 @@
 ﻿namespace API.Contexts.AccessControlContext.Contracts.Requests
 {
-    public sealed record RenameRoleRequest(string NewName);
+    public sealed record AssignRoleToMembershipRequest(Guid RoleId);
 }

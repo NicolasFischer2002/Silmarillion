@@ -2,7 +2,5 @@
 
 namespace API.Contexts.AccessControlContext.Contracts.Requests
 {
-    public sealed record RemovePermissionFromRoleRequest(
-        Guid RoleId,
-        PermissionCode Permission);
+    public sealed record RemovePermissionFromRoleRequest(PermissionCode Permission);
 }
