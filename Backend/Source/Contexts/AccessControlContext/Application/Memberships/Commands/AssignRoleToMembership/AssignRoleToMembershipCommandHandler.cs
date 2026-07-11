@@ -1,4 +1,5 @@
-﻿using Application.Abstractions.Persistence;
+﻿using Application.Abstractions.Handlers;
+using Application.Abstractions.Persistence;
 using Domain.Aggregates.Memberships.Errors;
 using Domain.Aggregates.Roles.Errors;
 using Domain.Errors;
@@ -6,7 +7,7 @@ using SharedKernel.Results;
 
 namespace Application.Memberships.Commands.AssignRoleToMembership
 {
-    public sealed class AssignRoleToMembershipCommandHandler
+    public sealed class AssignRoleToMembershipCommandHandler : IAssignRoleToMembershipCommandHandler
     {
         private readonly IMembershipRepository _membershipRepository;
         private readonly IRoleRepository _roleRepository;

@@ -2,5 +2,5 @@
 {
     public sealed record RenameRoleCommand(
         Guid RoleId,
-        string Name);
+        string NewName);
 }

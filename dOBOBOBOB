@@ -1,0 +1,66 @@
+[1mdiff --git a/Backend/Source/Contexts/AccessControlContext/Application/Abstractions/Handlers/IActivateRoleCommandHandler.cs b/Backend/Source/Contexts/AccessControlContext/Application/Abstractions/Handlers/IActivateRoleCommandHandler.cs[m
+[1mnew file mode 100644[m
+[1mindex 0000000..098d676[m
+[1m--- /dev/null[m
+[1m+++ b/Backend/Source/Contexts/AccessControlContext/Application/Abstractions/Handlers/IActivateRoleCommandHandler.cs[m
+[36m@@ -0,0 +1,12 @@[m
+[32m+[m[32m﻿using Application.Roles.Commands.ActivateRole;[m
+[32m+[m[32musing SharedKernel.Results;[m
+[32m+[m
+[32m+[m[32mnamespace Application.Abstractions.Handlers[m
+[32m+[m[32m{[m
+[32m+[m[32m    public interface IActivateRoleCommandHandler[m
+[32m+[m[32m    {[m
+[32m+[m[32m        Task<Result> HandleAsync([m
+[32m+[m[32m            ActivateRoleCommand command,[m
+[32m+[m[32m            CancellationToken cancellationToken = default);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/Backend/Source/Contexts/AccessControlContext/Application/Abstractions/Handlers/ICreateRoleCommandHandler.cs b/Backend/Source/Contexts/AccessControlContext/Application/Abstractions/Handlers/ICreateRoleCommandHandler.cs[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9c5abbd[m
+[1m--- /dev/null[m
+[1m+++ b/Backend/Source/Contexts/AccessControlContext/Application/Abstractions/Handlers/ICreateRoleCommandHandler.cs[m
+[36m@@ -0,0 +1,12 @@[m
+[32m+[m[32m﻿using Application.Roles.Commands.CreateRole;[m
+[32m+[m[32musing SharedKernel.Results;[m
+[32m+[m
+[32m+[m[32mnamespace Application.Abstractions.Handlers[m
+[32m+[m[32m{[m
+[32m+[m[32m    public interface ICreateRoleCommandHandler[m
+[32m+[m[32m    {[m
+[32m+[m[32m        Task<Result<CreateRoleResponse>> HandleAsync([m
+[32m+[m[32m            CreateRoleCommand command,[m
+[32m+[m[32m            CancellationToken cancellationToken = default);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/Backend/Source/Contexts/AccessControlContext/Application/DependencyInjection/AddAccessControlApplication.cs b/Backend/Source/Contexts/AccessControlContext/Application/DependencyInjection/AddAccessControlApplication.cs[m
+[1mindex 78c34c6..526835a 100644[m
+[1m--- a/Backend/Source/Contexts/AccessControlContext/Application/DependencyInjection/AddAccessControlApplication.cs[m
+[1m+++ b/Backend/Source/Contexts/AccessControlContext/Application/DependencyInjection/AddAccessControlApplication.cs[m
+[36m@@ -1,4 +1,6 @@[m
+[31m-﻿using Application.Roles.Commands.CreateRole;[m
+[32m+[m[32m﻿using Application.Abstractions.Handlers;[m
+[32m+[m[32musing Application.Roles.Commands.ActivateRole;[m
+[32m+[m[32musing Application.Roles.Commands.CreateRole;[m
+ using Microsoft.Extensions.DependencyInjection;[m
+ [m
+ namespace Application.DependencyInjection[m
+[36m@@ -8,7 +10,8 @@[m [mnamespace Application.DependencyInjection[m
+         public static IServiceCollection AddAccessControlApplication([m
+             this IServiceCollection services)[m
+         {[m
+[31m-            services.AddScoped<CreateRoleCommandHandler>();[m
+[32m+[m[32m            services.AddScoped<ICreateRoleCommandHandler, CreateRoleCommandHandler>();[m
+[32m+[m[32m            services.AddScoped<IActivateRoleCommandHandler, ActivateRoleCommandHandler>();[m
+ [m
+             return services;[m
+         }[m
+[1mdiff --git a/Backend/Source/Contexts/AccessControlContext/Application/Roles/Commands/ActivateRole/ActivateRoleCommandHandler.cs b/Backend/Source/Contexts/AccessControlContext/Application/Roles/Commands/ActivateRole/ActivateRoleCommandHandler.cs[m
+[1mindex eff08e9..0b7d75a 100644[m
+[1m--- a/Backend/Source/Contexts/AccessControlContext/Application/Roles/Commands/ActivateRole/ActivateRoleCommandHandler.cs[m
+[1m+++ b/Backend/Source/Contexts/AccessControlContext/Application/Roles/Commands/ActivateRole/ActivateRoleCommandHandler.cs[m
+[36m@@ -1,10 +1,11 @@[m
+[31m-﻿using Application.Abstractions.Persist

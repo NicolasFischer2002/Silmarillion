@@ -1,10 +1,11 @@
-﻿using Application.Abstractions.Persistence;
+﻿using Application.Abstractions.Handlers;
+using Application.Abstractions.Persistence;
 using Domain.Aggregates.Roles.Errors;
 using SharedKernel.Results;
 
 namespace Application.Roles.Commands.RemovePermissionFromRole
 {
-    public sealed class RemovePermissionFromRoleCommandHandler
+    public sealed class RemovePermissionFromRoleCommandHandler : IRemovePermissionFromRoleCommandHandler
     {
         private readonly IRoleRepository _roleRepository;
 

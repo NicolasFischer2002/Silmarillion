@@ -1,10 +1,11 @@
-﻿using Application.Abstractions.Persistence;
+﻿using Application.Abstractions.Handlers;
+using Application.Abstractions.Persistence;
 using Domain.Aggregates.Memberships.Aggregate;
 using SharedKernel.Results;
 
 namespace Application.Memberships.Commands.CreateMembership
 {
-    public sealed class CreateMembershipCommandHandler
+    public sealed class CreateMembershipCommandHandler : ICreateMembershipCommandHandler
     {
         private readonly IMembershipRepository _membershipRepository;
         private readonly IUnitOfWork _unitOfWork;

@@ -1,10 +1,11 @@
-﻿using Application.Abstractions.Persistence;
+﻿using Application.Abstractions.Handlers;
+using Application.Abstractions.Persistence;
 using Domain.Aggregates.Memberships.Errors;
 using SharedKernel.Results;
 
 namespace Application.Memberships.Commands.ActivateMembership
 {
-    public sealed class ActivateMembershipCommandHandler
+    public sealed class ActivateMembershipCommandHandler : IActivateMembershipCommandHandler
     {
         private readonly IMembershipRepository _membershipRepository;
         private readonly IUnitOfWork _unitOfWork;

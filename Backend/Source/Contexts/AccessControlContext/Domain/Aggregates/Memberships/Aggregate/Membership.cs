@@ -19,7 +19,7 @@ namespace Domain.Aggregates.Memberships.Aggregate
 
         private Membership() { }
 
-        internal Membership(
+        private Membership(
             Guid id,
             Guid userId,
             Guid organizationId,
