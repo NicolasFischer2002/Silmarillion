@@ -2,6 +2,9 @@
 using Application.Memberships.Commands.ActivateMembership;
 using Application.Memberships.Commands.AssignRoleToMembership;
 using Application.Memberships.Commands.CreateMembership;
+using Application.Memberships.Commands.DeactivateMembership;
+using Application.Memberships.Commands.RemoveRoleFromMembership;
+using Application.Memberships.Commands.RevokeMembership;
 using Application.Roles.Commands.ActivateRole;
 using Application.Roles.Commands.AddPermissionToRole;
 using Application.Roles.Commands.CreateRole;
@@ -29,6 +32,9 @@ namespace Application.DependencyInjection
             services.AddScoped<IActivateMembershipCommandHandler, ActivateMembershipCommandHandler>();
             services.AddScoped<IAssignRoleToMembershipCommandHandler, AssignRoleToMembershipCommandHandler>();
             services.AddScoped<ICreateMembershipCommandHandler, CreateMembershipCommandHandler>();
+            services.AddScoped<IDeactivateMembershipCommandHandler, DeactivateMembershipCommandHandler>();
+            services.AddScoped<IRemoveRoleFromMembershipCommandHandler, RemoveRoleFromMembershipCommandHandler>();
+            services.AddScoped<IRevokeMembershipCommandHandler, RevokeMembershipCommandHandler>();
 
             return services;
         }

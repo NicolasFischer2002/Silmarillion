@@ -1,10 +1,11 @@
-﻿using Application.Abstractions.Persistence;
+﻿using Application.Abstractions.Handlers;
+using Application.Abstractions.Persistence;
 using Domain.Aggregates.Memberships.Errors;
 using SharedKernel.Results;
 
 namespace Application.Memberships.Commands.RemoveRoleFromMembership
 {
-    public sealed class RemoveRoleFromMembershipCommandHandler
+    public sealed class RemoveRoleFromMembershipCommandHandler : IRemoveRoleFromMembershipCommandHandler
     {
         private readonly IMembershipRepository _membershipRepository;
         private readonly IUnitOfWork _unitOfWork;
