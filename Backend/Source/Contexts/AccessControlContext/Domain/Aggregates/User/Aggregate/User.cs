@@ -1,6 +1,6 @@
-﻿using Domain.Aggregates.Constants;
-using Domain.Aggregates.Errors;
-using Domain.Aggregates.ValueObjects;
+﻿using Domain.Aggregates.User.Constants;
+using Domain.Aggregates.User.Errors;
+using Domain.Aggregates.User.ValueObjects;
 using SharedKernel.Errors;
 using SharedKernel.Results;
 
@@ -44,16 +44,16 @@ namespace Domain.Aggregates.User.Aggregate
             PasswordHash passwordHash)
         {
             if (id == Guid.Empty)
-                return Result<User>.Failure(IdentityErrors.UserIdInvalid());
+                return Result<User>.Failure(UserErrors.UserIdInvalid());
 
             if (fullName is null)
-                return Result<User>.Failure(IdentityErrors.FullNameRequired());
+                return Result<User>.Failure(UserErrors.FullNameRequired());
 
             if (emailAddress is null)
                 return Result<User>.Failure(EmailAddressPolicyErrors.EmailRequired());
 
             if (passwordHash is null)
-                return Result<User>.Failure(IdentityErrors.PasswordHashRequired());
+                return Result<User>.Failure(UserErrors.PasswordHashRequired());
 
             var user = new User(
                 id,
@@ -72,7 +72,7 @@ namespace Domain.Aggregates.User.Aggregate
         public Result ChangeFullName(FullName fullName)
         {            
             if (fullName is null)
-                return Result.Failure(IdentityErrors.FullNameRequired());
+                return Result.Failure(UserErrors.FullNameRequired());
 
             FullName = fullName;
             LastModifiedAt = DateTime.UtcNow;
@@ -92,7 +92,7 @@ namespace Domain.Aggregates.User.Aggregate
         public Result ChangePasswordHash(PasswordHash passwordHash)
         {
             if (passwordHash is null)
-                return Result.Failure(IdentityErrors.PasswordHashRequired());
+                return Result.Failure(UserErrors.PasswordHashRequired());
 
             PasswordHash = passwordHash;
             MustChangePassword = false;
@@ -103,10 +103,10 @@ namespace Domain.Aggregates.User.Aggregate
         public Result Activate()
         {
             if (Status == UserStatus.Active)
-                return Result.Failure(IdentityErrors.UserAlreadyActive());
+                return Result.Failure(UserErrors.UserAlreadyActive());
 
             if (MustChangePassword)
-                return Result.Failure(IdentityErrors.PasswordChangeRequired());
+                return Result.Failure(UserErrors.PasswordChangeRequired());
 
             Status = UserStatus.Active;
             LastModifiedAt = DateTime.UtcNow;
@@ -116,7 +116,7 @@ namespace Domain.Aggregates.User.Aggregate
         public Result Deactivate()
         {
             if (Status == UserStatus.Inactive)
-                return Result.Failure(IdentityErrors.UserAlreadyInactive());
+                return Result.Failure(UserErrors.UserAlreadyInactive());
 
             Status = UserStatus.Inactive;
             LastModifiedAt = DateTime.UtcNow;

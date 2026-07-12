@@ -1,10 +1,10 @@
-﻿using Domain.Enums;
-using Domain.Errors;
-using Domain.ValueObjects;
+﻿using Domain.Aggregates.Organizations.Constants;
+using Domain.Aggregates.Organizations.Errors;
+using Domain.Aggregates.Organizations.ValueObjects;
 using SharedKernel.Errors;
 using SharedKernel.Results;
 
-namespace Domain.Aggregates.Organization.Aggregate
+namespace Domain.Aggregates.Organizations.Aggregate
 {
     public sealed class Organization
     {

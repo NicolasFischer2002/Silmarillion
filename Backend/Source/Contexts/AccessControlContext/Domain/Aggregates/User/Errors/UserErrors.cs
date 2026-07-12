@@ -1,8 +1,8 @@
 ﻿using SharedKernel.Results;
 
-namespace Domain.Aggregates.Errors
+namespace Domain.Aggregates.User.Errors
 {
-    public static class IdentityErrors
+    public static class UserErrors
     {
         // User
         public static Error UserIdInvalid()

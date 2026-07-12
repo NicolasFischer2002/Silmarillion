@@ -1,4 +1,4 @@
-﻿namespace Domain.Enums
+﻿namespace Domain.Aggregates.Organizations.Constants
 {
     public enum AddressState
     {

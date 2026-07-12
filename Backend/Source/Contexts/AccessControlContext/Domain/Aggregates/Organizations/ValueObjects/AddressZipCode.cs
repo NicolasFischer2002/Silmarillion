@@ -1,8 +1,8 @@
-﻿using Domain.Policies;
+﻿using Domain.Aggregates.Organizations.Policies;
 using SharedKernel.Results;
 using SharedKernel.Text;
 
-namespace Domain.ValueObjects
+namespace Domain.Aggregates.Organizations.ValueObjects
 {
     public sealed record AddressZipCode
     {

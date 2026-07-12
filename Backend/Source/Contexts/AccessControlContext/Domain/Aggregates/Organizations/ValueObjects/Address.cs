@@ -1,9 +1,9 @@
-﻿using Domain.Enums;
-using Domain.Errors;
+﻿using Domain.Aggregates.Organizations.Constants;
+using Domain.Aggregates.Organizations.Errors;
 using SharedKernel.Results;
 using SharedKernel.Validation;
 
-namespace Domain.ValueObjects
+namespace Domain.Aggregates.Organizations.ValueObjects
 {
     public sealed record Address
     {

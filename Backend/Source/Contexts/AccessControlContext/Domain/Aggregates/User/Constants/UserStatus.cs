@@ -1,4 +1,4 @@
-﻿namespace Domain.Aggregates.Constants
+﻿namespace Domain.Aggregates.User.Constants
 {
     public enum UserStatus
     {

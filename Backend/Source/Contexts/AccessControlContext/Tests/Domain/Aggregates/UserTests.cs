@@ -1,7 +1,7 @@
-using Domain.Aggregates.Constants;
-using Domain.Aggregates.Errors;
 using Domain.Aggregates.User.Aggregate;
-using Domain.Aggregates.ValueObjects;
+using Domain.Aggregates.User.Constants;
+using Domain.Aggregates.User.Errors;
+using Domain.Aggregates.User.ValueObjects;
 using SharedKernel.Errors;
 using SharedTests.Assertions;
 
@@ -42,7 +42,7 @@ public class UserTests
             ValidPasswordHash()
         );
 
-        result.ShouldFailWith(IdentityErrors.UserIdInvalid());
+        result.ShouldFailWith(UserErrors.UserIdInvalid());
     }
 
     [TestMethod]
@@ -55,7 +55,7 @@ public class UserTests
             ValidPasswordHash()
         );
 
-        result.ShouldFailWith(IdentityErrors.FullNameRequired());
+        result.ShouldFailWith(UserErrors.FullNameRequired());
     }
 
     [TestMethod]
@@ -81,7 +81,7 @@ public class UserTests
             null!
         );
 
-        result.ShouldFailWith(IdentityErrors.PasswordHashRequired());
+        result.ShouldFailWith(UserErrors.PasswordHashRequired());
     }
 
     [TestMethod]
@@ -122,7 +122,7 @@ public class UserTests
 
         var result = user.ChangeFullName(null!);
 
-        result.ShouldFailWith(IdentityErrors.FullNameRequired());
+        result.ShouldFailWith(UserErrors.FullNameRequired());
     }
 
     [TestMethod]
@@ -198,7 +198,7 @@ public class UserTests
 
         var result = user.ChangePasswordHash(null!);
 
-        result.ShouldFailWith(IdentityErrors.PasswordHashRequired());
+        result.ShouldFailWith(UserErrors.PasswordHashRequired());
     }
 
     [TestMethod]
@@ -259,7 +259,7 @@ public class UserTests
         // Try activating it again
         var result = user.Activate();
 
-        result.ShouldFailWith(IdentityErrors.UserAlreadyActive());
+        result.ShouldFailWith(UserErrors.UserAlreadyActive());
     }
 
     [TestMethod]
@@ -269,7 +269,7 @@ public class UserTests
 
         var result = user.Activate();
 
-        result.ShouldFailWith(IdentityErrors.PasswordChangeRequired());
+        result.ShouldFailWith(UserErrors.PasswordChangeRequired());
     }
 
     [TestMethod]
@@ -313,7 +313,7 @@ public class UserTests
         // Second attempt should fail
         var result = user.Deactivate();
 
-        result.ShouldFailWith(IdentityErrors.UserAlreadyInactive());
+        result.ShouldFailWith(UserErrors.UserAlreadyInactive());
     }
 
     [TestMethod]

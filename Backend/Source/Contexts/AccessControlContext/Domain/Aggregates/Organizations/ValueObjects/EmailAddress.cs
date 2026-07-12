@@ -1,7 +1,7 @@
 ﻿using SharedKernel.Policies;
 using SharedKernel.Results;
 
-namespace Domain.ValueObjects
+namespace Domain.Aggregates.Organizations.ValueObjects
 {
     public sealed record EmailAddress
     {

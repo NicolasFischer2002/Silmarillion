@@ -1,7 +1,7 @@
-﻿using Domain.Aggregates.Errors;
+﻿using Domain.Aggregates.User.Errors;
 using SharedKernel.Results;
 
-namespace Domain.Aggregates.ValueObjects
+namespace Domain.Aggregates.User.ValueObjects
 {
     public sealed record PasswordHash
     {
@@ -15,7 +15,7 @@ namespace Domain.Aggregates.ValueObjects
         public static Result<PasswordHash> Create(string? value)
         {
             if (string.IsNullOrWhiteSpace(value))
-                return Result<PasswordHash>.Failure(IdentityErrors.PasswordHashRequired());
+                return Result<PasswordHash>.Failure(UserErrors.PasswordHashRequired());
 
             var normalizedValue = value.Trim();
 

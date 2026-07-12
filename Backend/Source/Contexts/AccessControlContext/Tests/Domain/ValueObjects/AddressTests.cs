@@ -1,6 +1,6 @@
-using Domain.Enums;
-using Domain.Errors;
-using Domain.ValueObjects;
+using Domain.Aggregates.Organizations.Constants;
+using Domain.Aggregates.Organizations.Errors;
+using Domain.Aggregates.Organizations.ValueObjects;
 using SharedTests.Assertions;
 
 namespace Tests.Domain.ValueObjects;

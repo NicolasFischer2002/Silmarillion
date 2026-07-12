@@ -1,8 +1,8 @@
-﻿using Domain.Aggregates.Errors;
+﻿using Domain.Aggregates.User.Errors;
 using SharedKernel.Results;
 using SharedKernel.Text;
 
-namespace Domain.Aggregates.ValueObjects
+namespace Domain.Aggregates.User.ValueObjects
 {
     public sealed record FullName
     {
@@ -21,13 +21,13 @@ namespace Domain.Aggregates.ValueObjects
             var normalizedValue = StringNormalizer.Normalize(value);
 
             if (string.IsNullOrWhiteSpace(normalizedValue))
-                return Result<FullName>.Failure(IdentityErrors.FullNameRequired());
+                return Result<FullName>.Failure(UserErrors.FullNameRequired());
 
             if (normalizedValue.Length < MinLength)
-                return Result<FullName>.Failure(IdentityErrors.FullNameTooShort(MinLength));
+                return Result<FullName>.Failure(UserErrors.FullNameTooShort(MinLength));
 
             if (normalizedValue.Length > MaxLength)
-                return Result<FullName>.Failure(IdentityErrors.FullNameTooLong(MaxLength));
+                return Result<FullName>.Failure(UserErrors.FullNameTooLong(MaxLength));
 
             return Result<FullName>.Success(new FullName(normalizedValue));
         }

@@ -1,5 +1,5 @@
-using Domain.Aggregates.Errors;
-using Domain.Aggregates.ValueObjects;
+using Domain.Aggregates.User.Errors;
+using Domain.Aggregates.User.ValueObjects;
 using SharedTests.Assertions;
 
 namespace Tests.Domain.ValueObjects;
@@ -15,7 +15,7 @@ public class FullNameTests
     {
         var result = FullName.Create(value);
 
-        result.ShouldFailWith(IdentityErrors.FullNameRequired());
+        result.ShouldFailWith(UserErrors.FullNameRequired());
     }
 
     [TestMethod]
@@ -27,7 +27,7 @@ public class FullNameTests
     {
         var result = FullName.Create(value);
 
-        result.ShouldFailWith(IdentityErrors.FullNameTooShort(10));
+        result.ShouldFailWith(UserErrors.FullNameTooShort(10));
     }
 
     [TestMethod]
@@ -47,7 +47,7 @@ public class FullNameTests
     {
         var result = FullName.Create(new string('a', 101));
 
-        result.ShouldFailWith(IdentityErrors.FullNameTooLong(100));
+        result.ShouldFailWith(UserErrors.FullNameTooLong(100));
     }
 
     [TestMethod]

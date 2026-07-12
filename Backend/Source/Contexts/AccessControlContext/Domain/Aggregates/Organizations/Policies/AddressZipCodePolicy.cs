@@ -1,7 +1,7 @@
-﻿using Domain.Errors;
+﻿using Domain.Aggregates.Organizations.Errors;
 using SharedKernel.Results;
 
-namespace Domain.Policies
+namespace Domain.Aggregates.Organizations.Policies
 {
     public static class AddressZipCodePolicy
     {

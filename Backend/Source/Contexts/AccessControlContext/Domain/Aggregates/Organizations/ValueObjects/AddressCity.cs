@@ -1,8 +1,8 @@
-﻿using Domain.Errors;
+﻿using Domain.Aggregates.Organizations.Errors;
 using SharedKernel.Results;
 using SharedKernel.Text;
 
-namespace Domain.ValueObjects
+namespace Domain.Aggregates.Organizations.ValueObjects
 {
     public sealed record AddressCity
     {
