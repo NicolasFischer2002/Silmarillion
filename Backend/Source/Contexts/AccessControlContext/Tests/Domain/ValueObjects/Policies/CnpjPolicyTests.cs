@@ -1,5 +1,5 @@
-using Domain.Aggregates.Organizations.Errors;
-using Domain.Aggregates.Organizations.Policies;
+using Domain.Aggregates.Organization.Errors;
+using Domain.Aggregates.Organization.Policies;
 using SharedTests.Assertions;
 
 namespace Tests.Domain.ValueObjects.Policies;

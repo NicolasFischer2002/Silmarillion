@@ -1,4 +1,4 @@
-﻿using Domain.Aggregates.Roles.Aggregate;
+﻿using Domain.Aggregates.Role.Aggregate;
 
 namespace Application.Abstractions.Persistence
 {

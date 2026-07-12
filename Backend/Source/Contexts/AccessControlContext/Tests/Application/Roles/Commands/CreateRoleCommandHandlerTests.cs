@@ -1,7 +1,7 @@
 using Application.Abstractions.Persistence;
 using Application.Roles.Commands.CreateRole;
-using Domain.Aggregates.Roles.Aggregate;
-using Domain.Aggregates.Roles.Errors;
+using Domain.Aggregates.Role.Aggregate;
+using Domain.Aggregates.Role.Errors;
 using Moq;
 using SharedTests.Assertions;
 

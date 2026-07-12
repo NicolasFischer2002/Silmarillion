@@ -1,5 +1,5 @@
 ﻿using Application.Abstractions.Persistence;
-using Domain.Aggregates.Roles.Aggregate;
+using Domain.Aggregates.Role.Aggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories.Roles

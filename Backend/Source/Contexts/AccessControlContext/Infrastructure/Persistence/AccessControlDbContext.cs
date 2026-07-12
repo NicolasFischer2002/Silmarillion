@@ -1,5 +1,5 @@
-﻿using Domain.Aggregates.Memberships.Aggregate;
-using Domain.Aggregates.Roles.Aggregate;
+﻿using Domain.Aggregates.Membership.Aggregate;
+using Domain.Aggregates.Role.Aggregate;
 using Infrastructure.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 

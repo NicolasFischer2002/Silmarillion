@@ -1,7 +1,7 @@
 ﻿using Application.Abstractions.Handlers;
 using Application.Abstractions.Persistence;
-using Domain.Aggregates.Roles.Errors;
-using Domain.Aggregates.Roles.ValueObjects;
+using Domain.Aggregates.Role.Errors;
+using Domain.Aggregates.Role.ValueObjects;
 using SharedKernel.Results;
 
 namespace Application.Roles.Commands.RenameRole

@@ -1,6 +1,6 @@
 ﻿using Application.Abstractions.Handlers;
 using Application.Abstractions.Persistence;
-using Domain.Aggregates.Roles.Errors;
+using Domain.Aggregates.Role.Errors;
 using SharedKernel.Results;
 
 namespace Application.Roles.Commands.ActivateRole

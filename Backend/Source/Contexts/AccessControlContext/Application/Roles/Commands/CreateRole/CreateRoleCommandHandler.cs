@@ -1,7 +1,7 @@
 ﻿using Application.Abstractions.Handlers;
 using Application.Abstractions.Persistence;
-using Domain.Aggregates.Roles.Aggregate;
-using Domain.Aggregates.Roles.ValueObjects;
+using Domain.Aggregates.Role.Aggregate;
+using Domain.Aggregates.Role.ValueObjects;
 using SharedKernel.Results;
 
 namespace Application.Roles.Commands.CreateRole

@@ -1,6 +1,6 @@
 ﻿using Application.Abstractions.Handlers;
 using Application.Abstractions.Persistence;
-using Domain.Aggregates.Memberships.Errors;
+using Domain.Aggregates.Membership.Errors;
 using SharedKernel.Results;
 
 namespace Application.Memberships.Commands.RevokeMembership

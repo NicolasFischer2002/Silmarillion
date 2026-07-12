@@ -1,4 +1,4 @@
-﻿using Domain.Aggregates.Memberships.Aggregate;
+﻿using Domain.Aggregates.Membership.Aggregate;
 
 namespace Application.Abstractions.Persistence
 {

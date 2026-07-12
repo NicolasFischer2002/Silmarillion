@@ -1,13 +1,13 @@
 ﻿using Application.Abstractions.Persistence;
 using Application.Memberships.Commands.AssignRoleToMembership;
-using Domain.Aggregates.Memberships.Errors;
-using Domain.Aggregates.Roles.Errors;
-using Domain.Aggregates.Memberships.Aggregate;
-using Domain.Aggregates.Roles.Aggregate;
-using Domain.Aggregates.Roles.ValueObjects;
 using Domain.Errors;
 using Moq;
 using SharedTests.Assertions;
+using Domain.Aggregates.Role.Aggregate;
+using Domain.Aggregates.Role.Errors;
+using Domain.Aggregates.Role.ValueObjects;
+using Domain.Aggregates.Membership.Aggregate;
+using Domain.Aggregates.Membership.Errors;
 
 namespace Tests.Application.Memberships.Commands
 {

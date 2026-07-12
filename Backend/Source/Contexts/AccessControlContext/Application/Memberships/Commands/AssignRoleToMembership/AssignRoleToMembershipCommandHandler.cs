@@ -1,7 +1,7 @@
 ﻿using Application.Abstractions.Handlers;
 using Application.Abstractions.Persistence;
-using Domain.Aggregates.Memberships.Errors;
-using Domain.Aggregates.Roles.Errors;
+using Domain.Aggregates.Membership.Errors;
+using Domain.Aggregates.Role.Errors;
 using Domain.Errors;
 using SharedKernel.Results;
 

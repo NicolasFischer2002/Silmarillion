@@ -1,5 +1,5 @@
 ﻿using Application.Abstractions.Persistence;
-using Domain.Aggregates.Memberships.Aggregate;
+using Domain.Aggregates.Membership.Aggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories.Memberships

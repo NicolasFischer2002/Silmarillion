@@ -1,5 +1,5 @@
-﻿using Domain.Aggregates.Roles.Aggregate;
-using Domain.Aggregates.Roles.ValueObjects;
+﻿using Domain.Aggregates.Role.Aggregate;
+using Domain.Aggregates.Role.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

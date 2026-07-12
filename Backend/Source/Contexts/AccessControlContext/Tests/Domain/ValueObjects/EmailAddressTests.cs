@@ -1,4 +1,4 @@
-using Domain.Aggregates.Organizations.ValueObjects;
+using Domain.Aggregates.Organization.ValueObjects;
 using Domain.Errors;
 using SharedKernel.Errors;
 using SharedTests.Assertions;

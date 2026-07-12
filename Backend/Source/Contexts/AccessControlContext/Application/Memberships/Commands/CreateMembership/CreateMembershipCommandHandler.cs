@@ -1,6 +1,6 @@
 ﻿using Application.Abstractions.Handlers;
 using Application.Abstractions.Persistence;
-using Domain.Aggregates.Memberships.Aggregate;
+using Domain.Aggregates.Membership.Aggregate;
 using SharedKernel.Results;
 
 namespace Application.Memberships.Commands.CreateMembership

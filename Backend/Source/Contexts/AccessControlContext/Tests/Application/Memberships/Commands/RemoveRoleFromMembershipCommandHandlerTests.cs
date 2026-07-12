@@ -1,7 +1,7 @@
 using Application.Abstractions.Persistence;
 using Application.Memberships.Commands.RemoveRoleFromMembership;
-using Domain.Aggregates.Memberships.Aggregate;
-using Domain.Aggregates.Memberships.Errors;
+using Domain.Aggregates.Membership.Aggregate;
+using Domain.Aggregates.Membership.Errors;
 using Moq;
 using SharedTests.Assertions;
 

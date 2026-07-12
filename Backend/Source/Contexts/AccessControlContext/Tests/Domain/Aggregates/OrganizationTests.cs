@@ -1,7 +1,7 @@
-using Domain.Aggregates.Organizations.Aggregate;
-using Domain.Aggregates.Organizations.Constants;
-using Domain.Aggregates.Organizations.Errors;
-using Domain.Aggregates.Organizations.ValueObjects;
+using Domain.Aggregates.Organization.Aggregate;
+using Domain.Aggregates.Organization.Constants;
+using Domain.Aggregates.Organization.Errors;
+using Domain.Aggregates.Organization.ValueObjects;
 using SharedKernel.Errors;
 using SharedTests.Assertions;
 

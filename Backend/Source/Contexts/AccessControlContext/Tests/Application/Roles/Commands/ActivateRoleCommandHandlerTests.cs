@@ -1,9 +1,9 @@
 using Application.Abstractions.Persistence;
 using Application.Roles.Commands.ActivateRole;
-using Domain.Aggregates.Roles.Aggregate;
+using Domain.Aggregates.Role.Aggregate;
+using Domain.Aggregates.Role.Errors;
+using Domain.Aggregates.Role.ValueObjects;
 using Domain.Aggregates.Roles.Constants;
-using Domain.Aggregates.Roles.Errors;
-using Domain.Aggregates.Roles.ValueObjects;
 using Moq;
 using SharedTests.Assertions;
 

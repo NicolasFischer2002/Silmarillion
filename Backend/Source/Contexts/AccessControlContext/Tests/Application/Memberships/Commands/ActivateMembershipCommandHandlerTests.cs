@@ -1,8 +1,8 @@
 using Application.Abstractions.Persistence;
 using Application.Memberships.Commands.ActivateMembership;
-using Domain.Aggregates.Memberships.Aggregate;
-using Domain.Aggregates.Memberships.Constants;
-using Domain.Aggregates.Memberships.Errors;
+using Domain.Aggregates.Membership.Aggregate;
+using Domain.Aggregates.Membership.Constants;
+using Domain.Aggregates.Membership.Errors;
 using Moq;
 using SharedTests.Assertions;
 

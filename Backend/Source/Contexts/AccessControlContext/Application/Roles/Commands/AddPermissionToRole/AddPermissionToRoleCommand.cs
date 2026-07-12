@@ -1,4 +1,4 @@
-﻿using Domain.Aggregates.Roles.Constants;
+﻿using Domain.Aggregates.Role.Constants;
 
 namespace Application.Roles.Commands.AddPermissionToRole
 {

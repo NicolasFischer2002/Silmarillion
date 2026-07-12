@@ -1,5 +1,5 @@
 ﻿using Application.Abstractions.Persistence;
-using Domain.Aggregates.Memberships.Constants;
+using Domain.Aggregates.Membership.Constants;
 using Domain.Aggregates.Roles.Constants;
 
 namespace Application.Permissions.Queries.GetEffectivePermissions

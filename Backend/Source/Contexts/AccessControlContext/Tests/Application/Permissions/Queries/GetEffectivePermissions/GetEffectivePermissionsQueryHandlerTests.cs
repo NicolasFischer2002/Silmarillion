@@ -1,9 +1,9 @@
 using Application.Abstractions.Persistence;
 using Application.Permissions.Queries.GetEffectivePermissions;
-using Domain.Aggregates.Memberships.Aggregate;
-using Domain.Aggregates.Roles.Aggregate;
-using Domain.Aggregates.Roles.Constants;
-using Domain.Aggregates.Roles.ValueObjects;
+using Domain.Aggregates.Membership.Aggregate;
+using Domain.Aggregates.Role.Aggregate;
+using Domain.Aggregates.Role.Constants;
+using Domain.Aggregates.Role.ValueObjects;
 using Moq;
 using SharedTests.Assertions;
 

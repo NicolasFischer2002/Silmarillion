@@ -1,0 +1,163 @@
+﻿using Domain.Aggregates.Membership.Constants;
+using Domain.Aggregates.Membership.Errors;
+using Domain.Aggregates.Membership.Events;
+using Domain.Aggregates.Role.ValueObjects;
+using SharedKernel.DomainEvents;
+using SharedKernel.Results;
+
+namespace Domain.Aggregates.Membership.Aggregate
+{
+    public sealed class Membership : Entity
+    {
+        public Guid Id { get; }
+        public Guid UserId { get; }
+        public Guid OrganizationId { get; }
+        public MembershipStatus Status { get; private set; }
+        public MembershipRoles AssignedRoles { get; private set; }
+        public DateTime CreatedAt { get; }
+        public DateTime LastModifiedAt { get; private set; }
+
+        private Membership() { }
+
+        private Membership(
+            Guid id,
+            Guid userId,
+            Guid organizationId,
+            MembershipStatus status,
+            MembershipRoles assignedRoles,
+            DateTime createdAt,
+            DateTime lastModifiedAt)
+        {
+            Id = id;
+            UserId = userId;
+            OrganizationId = organizationId;
+            Status = status;
+            AssignedRoles = assignedRoles;
+            CreatedAt = createdAt;
+            LastModifiedAt = lastModifiedAt;
+        }
+
+        public static Result<Membership> CreatePending(
+            Guid id,
+            Guid userId,
+            Guid organizationId)
+        {
+            if (id == Guid.Empty)
+                return Result<Membership>.Failure(
+                    MembershipErrors.MembershipIdRequired());
+
+            if (userId == Guid.Empty)
+                return Result<Membership>.Failure(
+                    MembershipErrors.UserIdRequired());
+
+            if (organizationId == Guid.Empty)
+                return Result<Membership>.Failure(
+                    MembershipErrors.OrganizationIdRequired());
+
+            var now = DateTime.UtcNow;
+
+            return Result<Membership>.Success(
+                new Membership(
+                    id,
+                    userId,
+                    organizationId,
+                    MembershipStatus.Pending,
+                    new MembershipRoles(),
+                    now,
+                    now));
+        }
+
+        public Result Activate()
+        {
+            if (Status == MembershipStatus.Active)
+                return Result.Failure(MembershipErrors.MembershipAlreadyActive());
+
+            if (Status == MembershipStatus.Revoked)
+                return Result.Failure(MembershipErrors.CannotActivateRevokedMembership());
+
+            Status = MembershipStatus.Active;
+
+            var now = DateTime.UtcNow;
+
+            LastModifiedAt = now;
+
+            AddDomainEvent(
+                new MembershipActivatedDomainEvent(
+                    Id,
+                    UserId,
+                    OrganizationId,
+                    now));
+
+            return Result.Success();
+        }
+
+        public Result Deactivate()
+        {
+            if (Status == MembershipStatus.Inactive)
+                return Result.Failure(MembershipErrors.MembershipAlreadyInactive());
+
+            if (Status == MembershipStatus.Revoked)
+                return Result.Failure(MembershipErrors.CannotDeactivateRevokedMembership());
+
+            Status = MembershipStatus.Inactive;
+
+            var now = DateTime.UtcNow;
+
+            LastModifiedAt = now;
+
+            AddDomainEvent(
+                new MembershipDeactivatedDomainEvent(
+                    Id,
+                    UserId,
+                    OrganizationId,
+                    now));
+
+            return Result.Success();
+        }
+
+        public Result Revoke()
+        {
+            if (Status == MembershipStatus.Revoked)
+                return Result.Failure(MembershipErrors.MembershipAlreadyRevoked());
+
+            Status = MembershipStatus.Revoked;
+
+            var now = DateTime.UtcNow;
+
+            LastModifiedAt = now;
+
+            AddDomainEvent(
+                new MembershipRevokedDomainEvent(
+                    Id,
+                    UserId,
+                    OrganizationId,
+                    now));
+
+            return Result.Success();
+        }
+
+        public Result AssignRole(Guid roleId)
+        {
+            var result = AssignedRoles.Add(roleId);
+
+            if (result.IsFailure)
+                return result;
+
+            LastModifiedAt = DateTime.UtcNow;
+
+            return Result.Success();
+        }
+
+        public Result RemoveRole(Guid roleId)
+        {
+            var result = AssignedRoles.Remove(roleId);
+
+            if (result.IsFailure)
+                return result;
+
+            LastModifiedAt = DateTime.UtcNow;
+
+            return Result.Success();
+        }
+    }
+}

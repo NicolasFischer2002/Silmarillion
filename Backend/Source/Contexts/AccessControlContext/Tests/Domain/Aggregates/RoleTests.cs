@@ -1,8 +1,9 @@
-using Domain.Aggregates.Roles.Aggregate;
+using Domain.Aggregates.Role.Aggregate;
+using Domain.Aggregates.Role.Constants;
+using Domain.Aggregates.Role.Errors;
+using Domain.Aggregates.Role.Events;
+using Domain.Aggregates.Role.ValueObjects;
 using Domain.Aggregates.Roles.Constants;
-using Domain.Aggregates.Roles.Errors;
-using Domain.Aggregates.Roles.Events;
-using Domain.Aggregates.Roles.ValueObjects;
 using SharedTests.Assertions;
 
 namespace Tests.Domain.Aggregates;
