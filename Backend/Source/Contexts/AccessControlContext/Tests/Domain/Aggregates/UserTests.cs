@@ -1,7 +1,7 @@
-using Domain.Aggregates;
-using Domain.Enums;
-using Domain.Errors;
-using Domain.ValueObjects;
+using Domain.Aggregates.Constants;
+using Domain.Aggregates.Errors;
+using Domain.Aggregates.User.Aggregate;
+using Domain.Aggregates.ValueObjects;
 using SharedKernel.Errors;
 using SharedTests.Assertions;
 

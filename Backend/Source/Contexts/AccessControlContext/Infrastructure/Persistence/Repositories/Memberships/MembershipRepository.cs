@@ -2,7 +2,7 @@
 using Domain.Aggregates.Memberships.Aggregate;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistence.Repositories
+namespace Infrastructure.Persistence.Repositories.Memberships
 {
     public sealed class MembershipRepository: IMembershipRepository
     {

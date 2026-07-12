@@ -1,8 +1,8 @@
-﻿using Domain.Errors;
+﻿using Domain.Aggregates.Errors;
 using SharedKernel.Results;
 using SharedKernel.Text;
 
-namespace Domain.ValueObjects
+namespace Domain.Aggregates.ValueObjects
 {
     public sealed record FullName
     {

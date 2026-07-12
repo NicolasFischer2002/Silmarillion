@@ -1,4 +1,4 @@
-using Domain.Aggregates;
+using Domain.Aggregates.Organization.Aggregate;
 using Domain.Enums;
 using Domain.Errors;
 using Domain.ValueObjects;

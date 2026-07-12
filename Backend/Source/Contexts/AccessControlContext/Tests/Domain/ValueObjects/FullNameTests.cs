@@ -1,5 +1,5 @@
-using Domain.Errors;
-using Domain.ValueObjects;
+using Domain.Aggregates.Errors;
+using Domain.Aggregates.ValueObjects;
 using SharedTests.Assertions;
 
 namespace Tests.Domain.ValueObjects;

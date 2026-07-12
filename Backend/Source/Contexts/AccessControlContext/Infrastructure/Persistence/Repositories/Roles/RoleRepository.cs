@@ -2,7 +2,7 @@
 using Domain.Aggregates.Roles.Aggregate;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistence.Repositories
+namespace Infrastructure.Persistence.Repositories.Roles
 {
     public sealed class RoleRepository : IRoleRepository
     {

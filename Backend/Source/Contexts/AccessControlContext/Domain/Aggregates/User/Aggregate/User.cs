@@ -1,10 +1,10 @@
-﻿using Domain.Enums;
-using Domain.Errors;
-using Domain.ValueObjects;
+﻿using Domain.Aggregates.Constants;
+using Domain.Aggregates.Errors;
+using Domain.Aggregates.ValueObjects;
 using SharedKernel.Errors;
 using SharedKernel.Results;
 
-namespace Domain.Aggregates
+namespace Domain.Aggregates.User.Aggregate
 {
     public sealed class User
     {

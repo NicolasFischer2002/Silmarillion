@@ -4,7 +4,7 @@ using Domain.ValueObjects;
 using SharedKernel.Errors;
 using SharedKernel.Results;
 
-namespace Domain.Aggregates
+namespace Domain.Aggregates.Organization.Aggregate
 {
     public sealed class Organization
     {

@@ -7,18 +7,6 @@
     <Project Path="Source/Contexts/AccessControlContext/Infrastructure/Infrastructure.csproj" />
     <Project Path="Source/Contexts/AccessControlContext/Tests/Tests.csproj" />
   </Folder>
-  <Folder Name="/Source/Contexts/OrganizationContext/">
-    <Project Path="Source/Contexts/OrganizationContext/Application/Application.csproj" />
-    <Project Path="Source/Contexts/OrganizationContext/Domain/Domain.csproj" />
-    <Project Path="Source/Contexts/OrganizationContext/Infrastructure/Infrastructure.csproj" />
-    <Project Path="Source/Contexts/OrganizationContext/Tests/Tests.csproj" />
-  </Folder>
-  <Folder Name="/Source/Contexts/IdentityContext/">
-    <Project Path="Source/Contexts/IdentityContext/Application/Application.csproj" />
-    <Project Path="Source/Contexts/IdentityContext/Domain/Domain.csproj" />
-    <Project Path="Source/Contexts/IdentityContext/Infrastructure/Infrastructure.csproj" />
-    <Project Path="Source/Contexts/IdentityContext/Tests/Tests.csproj" />
-  </Folder>
   <Folder Name="/Source/Contexts/SharedKernel/">
     <Project Path="Source/Contexts/SharedKernel/SharedKernel.csproj" Id="262a3ccb-0b10-4dba-8019-f0c4e5621a83" />
   </Folder>

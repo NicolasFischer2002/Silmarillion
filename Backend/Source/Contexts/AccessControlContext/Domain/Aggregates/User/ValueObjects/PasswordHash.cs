@@ -1,7 +1,7 @@
-﻿using Domain.Errors;
+﻿using Domain.Aggregates.Errors;
 using SharedKernel.Results;
 
-namespace Domain.ValueObjects
+namespace Domain.Aggregates.ValueObjects
 {
     public sealed record PasswordHash
     {

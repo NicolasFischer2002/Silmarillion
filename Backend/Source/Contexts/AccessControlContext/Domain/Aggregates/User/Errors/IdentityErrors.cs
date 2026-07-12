@@ -1,6 +1,6 @@
 ﻿using SharedKernel.Results;
 
-namespace Domain.Errors
+namespace Domain.Aggregates.Errors
 {
     public static class IdentityErrors
     {
