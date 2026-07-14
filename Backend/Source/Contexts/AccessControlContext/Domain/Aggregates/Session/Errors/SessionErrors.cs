@@ -33,5 +33,30 @@ namespace Domain.Aggregates.Session.Errors
             => Error.BusinessRule(
                 "Session.NotActive",
                 "Session is not active.");
+
+        public static Error IpAddressRequired()
+            => Error.Validation(
+                "Session.IPAddress.Required",
+                "IP address is required.");
+
+        public static Error UserAgentRequired()
+            => Error.Validation(
+                "Session.UserAgent.Required",
+                "User agent is required.");
+
+        public static Error ExpirationDateInvalid()
+            => Error.Validation(
+                "Session.ExpirationDate.Invalid",
+                "Expiration date is invalid.");
+
+        public static Error SessionAlreadyExpired()
+            => Error.BusinessRule(
+                "Session.AlreadyExpired",
+                "Session has already expired.");
+
+        public static Error RefreshTokenAlreadyInUse()
+            => Error.BusinessRule(
+                "Session.RefreshToken.AlreadyInUse",
+                "Refresh token hash is already in use.");
     }
 }
