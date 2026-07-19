@@ -3,7 +3,7 @@ using Domain.Errors;
 using SharedKernel.Errors;
 using SharedTests.Assertions;
 
-namespace Tests.Domain.ValueObjects;
+namespace Tests.Domain.ValueObjects.Organization;
 
 [TestClass]
 public class EmailAddressTests

@@ -2,7 +2,7 @@ using Domain.Aggregates.User.Errors;
 using Domain.Aggregates.User.ValueObjects;
 using SharedTests.Assertions;
 
-namespace Tests.Domain.ValueObjects;
+namespace Tests.Domain.ValueObjects.User;
 
 [TestClass]
 public class FullNameTests

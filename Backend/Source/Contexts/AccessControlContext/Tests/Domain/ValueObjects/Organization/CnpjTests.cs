@@ -2,7 +2,7 @@ using Domain.Aggregates.Organization.Errors;
 using Domain.Aggregates.Organization.ValueObjects;
 using SharedTests.Assertions;
 
-namespace Tests.Domain.ValueObjects;
+namespace Tests.Domain.ValueObjects.Organization;
 
 [TestClass]
 public class CnpjTests
